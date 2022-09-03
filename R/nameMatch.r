@@ -40,7 +40,7 @@
 #'
 #'@author Jian Zhang & Hong Qian
 #'
-#'@references Zhang, J. & Qian, H. U.Taxonstand: An R package for standardizing scientific names of plants and animals. In prep.
+#'@references Zhang, J. & Qian, H. (2022). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Ecology, in press.
 #'
 #'@import magrittr
 #'@import plyr

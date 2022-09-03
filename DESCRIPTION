@@ -1,10 +1,10 @@
 Package: U.Taxonstand
 Type: Package
-Title: An R package for standardizing scientific names of plants and animals
+Title: An R package for Standardizing Scientific Names of Plants and Animals
 Version: 1.0.0
 Author: Jian Zhang, Hong Qian
 Maintainer: Jian Zhang <jzhang1982@gmail.com>
-Description: The package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted. 
+Description: This package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted. 
 Imports: plyr, magrittr
 Suggests: pbapply
 URL: https://github.com/ecoinfor/U.Taxonstand
