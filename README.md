@@ -1,6 +1,6 @@
 # U.Taxonstand
 
-'U.Taxonstand' is an R Package for Standardizing and Harmonizing Scientific Names of Plants and Animals. This package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted. 
+`U.Taxonstand` is an R Package for Standardizing and Harmonizing Scientific Names of Plants and Animals. This package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted. 
 
 ## Installation
 
