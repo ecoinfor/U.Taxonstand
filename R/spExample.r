@@ -8,6 +8,8 @@
 #'    \item{\emph{Rank}}{: Optional. Original taxonomic rank as provied in input.}
 #' }
 #'
+#'@usage data(spExample)
+#'
 #'@examples
 #'data(spExample)
 #'head(spExample)

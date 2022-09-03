@@ -3,7 +3,7 @@
 \docType{data}
 \name{databaseExample}
 \alias{databaseExample}
-\title{An example backbone dataset of standardized name list}
+\title{An example database of standardized name list}
 \format{
 A data frame with 6 variables: \itemize{
    \item{\emph{ID}}{: ID of the specific epithet.}
@@ -17,10 +17,10 @@ A data frame with 6 variables: \itemize{
 }
 }
 \usage{
-databaseExample
+data(databaseExample)
 }
 \description{
-A data frame with 9 columns and 6 variables. Multiple backbone databases for plants and animals that can be directly used by U.Taxonstand are available online \code{\link[https://github.com/nameMatch/Data_backbone]{https://github.com/nameMatch/Data_backbone}}. They include global taxonomic databases for vascular plants, amphibians, birds, fishes, mammals, and reptiles. Global backbone databases for other groups of organisms may be placed on the website in future.
+A data frame with 8 variables.
 }
 \examples{
 data(databaseExample)

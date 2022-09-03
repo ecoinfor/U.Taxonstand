@@ -12,7 +12,7 @@ A data frame with 3 variables: \itemize{
 }
 }
 \usage{
-spExample
+data(spExample)
 }
 \description{
 A data frame with 289 rows and 3 variables.

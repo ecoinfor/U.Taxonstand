@@ -2,25 +2,29 @@
 % Please edit documentation in R/nameClean.r
 \name{nameClean}
 \alias{nameClean}
-\title{Format the taxon names of the backbone data into the required format}
+\title{Format the taxon names of the database into the required format}
 \usage{
 nameClean(dataSource = NULL, author = TRUE)
 }
 \arguments{
-\item{author}{Logical. Will change "fil." to "f." and change "Linn." to "L.".}
+\item{dataSource}{A data frame with at least one column of the Latin name.}
 
-\item{datasource}{A data frame with at least one column of the Latin name.}
+\item{author}{Logical. Will change "fil." to "f." and change "Linn." to "L.".}
 }
 \value{
 A data frame with a new column "NameClean" and a new column "GENUS" if the column "GENUS" is missing in the datasource.
 }
 \description{
-This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X " " x " and more, and a new column "GENUS" is missing.
+This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X ", " x ", "×" and more, and a new column "GENUS" is missing.
 #'
 }
 \examples{
+data(databaseExample)
 dat <- databaseExample[,1:3]
-datClean <- nameClean(dat) # For the backbone data you will use in the future, you can save the result to save a bit time in the name matching
+
+# For the database you will use in the future, you can save the result
+# to save some time in the name matching
+datClean <- nameClean(dat)
 head(datClean)
 
 }

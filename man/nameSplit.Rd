@@ -16,7 +16,12 @@ A data frame with three columns: "Name", "Author" and "Rank".
 This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}.
 }
 \examples{
-sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Eupatorium betoniciforme f. alternifolium Hicken", "Turczaninowia fastigiata (Fisch.) DC.","Zizyphora abd-el-asisii Hand.-Mazz.","Baccharis X paulopolitana I.L.Teodoro & W.Hoehne","Accipiter albogularis woodfordi (Sharpe, 1888)")
+sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.",
+    "Eupatorium betoniciforme f. alternifolium Hicken",
+    "Turczaninowia fastigiata (Fisch.) DC.",
+    "Zizyphora abd-el-asisii Hand.-Mazz.",
+    "Baccharis X paulopolitana I.L.Teodoro & W.Hoehne",
+    "Accipiter albogularis woodfordi (Sharpe, 1888)")
 (splist <- nameSplit(splist=sps))
 
 }

@@ -11,7 +11,7 @@ A data frame with 3 variables: \itemize{
 }
 }
 \usage{
-genusPairs_Plants
+data(genusPairs_Plants)
 }
 \description{
 A data frame with 355 rows and 2 variables. The file with the information of genus variants is optional to U.Taxonstand, but the rate of matching success may increase when such information is provided.

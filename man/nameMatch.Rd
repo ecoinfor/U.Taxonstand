@@ -9,20 +9,22 @@ nameMatch(
   spSource = NULL,
   author = TRUE,
   max.distance = 1,
-  isPlant = TRUE,
-  genusPairs = NULL
+  genusPairs = NULL,
+  Append = FALSE
 )
 }
 \arguments{
 \item{spList}{A data frame or a character vector specifying the input taxon. An example of data frame could be found in the example data 'spExample'.A character vector specifying the input taxa, each element including genus and specific epithet and, potentially, author name and infraspecific abbreviation and epithet.}
 
-\item{spSource}{A data frame of the backbone database with standarized taxon names. An example of data frame could be found in the example data 'databaseExample'. Multiple backbone databases for plants and animals that can be directly used by U.Taxonstand are available online (https://github.com/nameMatch/Data_backbone). They include global taxonomic databases for vascular plants, amphibians, birds, fishes, mammals, and reptiles. Global backbone databases for other groups of organisms may be placed on the website in future.}
+\item{spSource}{A data frame of the database with standarized taxon names. An example of data frame could be found in the example data 'databaseExample'. Multiple databases for plants and animals that can be directly used by U.Taxonstand are available online (https://github.com/nameMatch/Database). They include global taxonomic databases for bryophytes, vascular plants, amphibians, birds, fishes, mammals, and reptiles. Global databases for other taxon groups of organisms may be placed on the website in future.}
 
 \item{author}{Logical. If TRUE (default), the function tries to match author names from the input taxon and calculate the author distance.}
 
-\item{max.distance}{A number indicating the maximum distance allowed for a match in \code{\link[base:agrep]{agrep}} when performing corrections of spelling errors in specific epithets.}
+\item{max.distance}{A number indicating the maximum distance allows for a match in \code{\link[base:agrep]{agrep}} when performing corrections of spelling errors in specific epithets.}
 
-\item{isPlant}{Logical. If TRUE(default), the function tried to use one datafile from R package Taxonstand for fuzzy matching of genus names.}
+\item{genusPairs}{Some genera have one or more variants in spelling (e.g. Euodia versus Evodia, Eccremis versus Excremis, Ziziphus versus Zizyphus). When a list of such genera is available, U.Taxonstand can use the information in the list as additional data to match names between the user’s species list and the taxonomic database. The data file should a dataframe with two columns (Genus01 and Genus02).}
+
+\item{Append}{Logical. If TRUE, the function will add other columns (e.g., geographic distribution and common names in different language) in the database into the final result.}
 }
 \value{
 A data frame with the following columns: \itemize{
@@ -40,12 +42,12 @@ A data frame with the following columns: \itemize{
    \item{\emph{Score}}{: Matching score (ranging from 1 to 0, when author of a scientific name is provided in user’s species list, or ranging from 0 to 0.8 when author of a scientific name is not provided). A larger value represents a better matching.}
    \item{\emph{name.dist}}{: The distance between Submitted_Name and Name_in_database.}
    \item{\emph{author.dist}}{: The distance between Submitted_Author and Author_in_database.}
-   \item{\emph{New_name}}{: The accepted name in the spSource.In the case that this column is empty and the column Score has a value > 0, the matched name is treated as an accepted name in backbone database. In the case that the matched name is treated as a synonym in backbone database, the name shown in this column is the accepted name of the synonym based on backbone database. For a name treated as an unresolved name or as a synonym whose accepted name cannot be identified on backbone database, the text “[Accepted name needs to be determined]” is shown in this column.}
-   \item{\emph{New_author}}{: Authority of the name in the column New_name based on backbone database.}
-   \item{\emph{New_ID}}{: ID of the name in the column New_name based on backbone database.}
+   \item{\emph{New_name}}{: The accepted name in the spSource.In the case that this column is empty and the column Score has a value > 0, the matched name is treated as an accepted name in the database. In the case that the matched name is treated as a synonym in the database, the name shown in this column is the accepted name of the synonym based on the database. For a name treated as an unresolved name or as a synonym whose accepted name cannot be identified on the database, the text “[Accepted name needs to be determined]” is shown in this column.}
+   \item{\emph{New_author}}{: Authority of the name in the column New_name based on the database.}
+   \item{\emph{New_ID}}{: ID of the name in the column New_name based on the database.}
    \item{\emph{Family}}{: Family name, extracted from the spSource.}
    \item{\emph{Name_spLev}}{: If the input taxon name cannot be matched at the same rank level, the species-level matching name shows here.}
-   \item{\emph{Accepted_SPNAME}}{: If the name in the column “Submitted_Name” is matched with a name in the backbone database, either as an accepted name or a synonym, the species name of the accepted name of the matched name will be listed here.}
+   \item{\emph{Accepted_SPNAME}}{: If the name in the column “Submitted_Name” is matched with a name in the database, either as an accepted name or a synonym, the species name of the accepted name of the matched name will be listed here.}
    \item{\emph{NOTE}}{: This column contains some notes, e.g. no matching or multiple matching results for a given name, or only matching at species level for a trinomial name.}
 }
 }
@@ -57,7 +59,8 @@ Replacing synonyms by accepted names and removing orthographical errors in the r
 data(databaseExample)
 
 ## The input names as a character vector
-sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Turczaninowia fastigiata (Fisch.) DC.","Zizyphora abd-el-asisii Hand.-Mazz.")
+sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Turczaninowia fastigiata (Fisch.) DC.",
+"Zizyphora abd-el-asisii Hand.-Mazz.")
 nameMatch(spList=sps, spSource=databaseExample, author = TRUE, max.distance= 1)
 
 ## The input names as a data frame
@@ -68,8 +71,29 @@ head(res)
 ## Using the additional data of genus pairs for fuzzy matching of genus names
 data(spExample)
 data(genusPairs_Plants)
-res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1, isPlant=TRUE, genusPairs=genusPairs_Plants)
+res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1, 
+genusPairs=genusPairs_Plants)
 head(res)
+
+## Species name matching for bird species (Not run)
+# load the formatted ITIS Aves database; the formatted database can be downloaded here:
+# https://github.com/nameMatch/Database
+# require(openxlsx)
+# databaseAves <- read.xlsx("Birds_ITIS_database.xlsx")
+# nameMatch(spList=c("Hieraaetus fasciata","Merops leschenaultia","Egretta sacra",
+# "Sturnia philippensis","Phoenicurus caeruleocephala","Enicurus maculates",
+# "Orthotomus cucullatus","Phalacrocorax carbo"),
+# spSource=databaseAves, author = FALSE, max.distance= 1)
+
+## Adding other information in the database into the final result (Not run)
+# sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Turczaninowia fastigiata (Fisch.) DC.",
+# "Zizyphora abd-el-asisii Hand.-Mazz.")
+# nameMatch(spList=sps, spSource=China_Plants_SP2000_2022Edition, author = TRUE, max.distance= 1,
+# genusPairs=genusPairs_Plants, Append=TRUE)
+# NOTE: The raw data "China_Plants_SP2000_2022Edition" can be downloaded here:
+# https://www.plantplus.cn/doi/10.12282/plantdata.0061;
+# the formatted database "Plants_SP2000_2022Edition_China" can be downloaded here:
+# https://github.com/nameMatch/Database
 
 }
 \references{

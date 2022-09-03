@@ -7,6 +7,8 @@
 #'    \item{\emph{Genus02}}{: The genus name with high possibility to misspell as the name of the same row in the column Genus01.}
 #' }
 #'
+#'@usage data(genusPairs_Plants)
+#'
 #'@examples
 #'data(genusPairs_Plants)
 #'head(genusPairs_Plants)
