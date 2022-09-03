@@ -97,7 +97,7 @@ head(res)
 
 }
 \references{
-Zhang, J. & Qian, H. U.Taxonstand: An R package for standardizing scientific names of plants and animals. In prep.
+Zhang, J. & Qian, H. (2022). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, in press.
 }
 \author{
 Jian Zhang & Hong Qian
