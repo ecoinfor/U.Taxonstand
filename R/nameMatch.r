@@ -40,7 +40,7 @@
 #'
 #'@author Jian Zhang & Hong Qian
 #'
-#'@references Zhang, J. & Qian, H. (2022). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, in press.
+#'@references Zhang, J. & Qian, H. (2022). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, in press. DOI: 10.1016/j.pld.2022.09.001.
 #'
 #'@import magrittr
 #'@import plyr
@@ -113,6 +113,9 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(!"ID"%in%colnames(spSource)) spSource$ID <- NA
   if(!"ACCEPTED_ID"%in%colnames(spSource)) spSource$ACCEPTED_ID <- NA
   if(!"FAMILY"%in%colnames(spSource)) spSource$FAMILY <- NA
+  if(author==TRUE & length(unique(spList$AUTHOR))==1){
+    if(is.na(unique(spList$AUTHOR))|unique(spList$AUTHOR)=="") author=FALSE	
+  }
   
   ##------------	
   epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
@@ -333,7 +336,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     ## This part only works for plants.
     if(length(genusRepl)>0){
       #--- To match with the data file "lista", which is from the R package Taxonstand
-      utils::data(lista)
+      # utils::data(lista)
       
       #--- This function is from the R package Taxonstand
       row.fn <- function(columna, error, key, lista){
@@ -582,7 +585,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   }
   rm(tst01,tst02)
   
-  ## remove multiple results with name.dist=0, but different author.dist (only keep the one with short distance)
+  ## remove multiple results with name.dist=0, but different author.dist (keep the one(s) with NAs in the column "ACCEPTED_ID")
   tst <- table(res$SORTER)
   tst <- as.numeric(names(tst[tst>1]))
   if(length(tst)>0) coco <- unique(res$SORTER[which(res$name.dist==0 & res$SORTER%in%tst)])
@@ -590,12 +593,31 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(exists("coco")){
     if(length(coco)>0){
       for(i in 1:length(coco)){
-        which_i <- which(res$SORTER==coco[i] & res$author.dist>min(res$author.dist[which(res$SORTER==coco[i])]))
-        if(length(which_i)>0) res <- res[-which_i,]
-        rm(which_i)
+        which_i <- which(res$SORTER==coco[i] & !is.na(res$ACCEPTED_ID))
+        which0 <- which(res$SORTER==coco[i] & is.na(res$ACCEPTED_ID))
+        if(length(which_i)>0 & length(which0)>0) res <- res[-which_i,]
+        rm(which_i,which0)
       }
     }
     rm(coco)
+  }  
+  
+  ## If "author==TRUE", remove multiple results with name.dist=0, but different author.dist (only keep the one with short distance). If "author==FALSE", no need to run this.
+  if(author==TRUE){
+    tst <- table(res$SORTER)
+    tst <- as.numeric(names(tst[tst>1]))
+    if(length(tst)>0) coco <- unique(res$SORTER[which(res$name.dist==0 & res$SORTER%in%tst)])
+    rm(tst)
+    if(exists("coco")){
+      if(length(coco)>0){
+        for(i in 1:length(coco)){
+          which_i <- which(res$SORTER==coco[i] & res$author.dist>min(res$author.dist[which(res$SORTER==coco[i])]))
+          if(length(which_i)>0) res <- res[-which_i,]
+          rm(which_i)
+        }
+      }
+      rm(coco)
+    }
   }
   
   ## remove multiple results with name.dist>2, if name.dist<=2 exists
@@ -630,23 +652,24 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     rm(coco)
   }
   
-  ## if the column Fuzzy == FALSE, only one column keeps
-  tst <- tapply(res$Fuzzy, res$SORTER, function(x)length(unique(x)))
-  tst <- as.numeric(names(tst[tst>1]))
-  if(length(tst)>0) res <- res[-which(res$SORTER%in%tst & res$Fuzzy==TRUE),]
-  rm(tst)
-  tst <- table(res$SORTER[which(res$Fuzzy==FALSE)])
-  tst <- as.numeric(names(tst[tst>1]))
-  if(length(tst)>0){
-    for(i in 1:length(tst)){
-      res_1 <- res[which(res$SORTER==tst[i]),]
-      res_2 <- res[-which(res$SORTER==tst[i]),]
-      res_1 <- res_1[which(res_1$name.dist==min(res_1$name.dist)),]
-      if(nrow(res_1)>1) res_1 <- res_1[which(res_1$author.dist==min(res_1$author.dist)),]
-      res <- rbind(res_1, res_2)
-      rm(res_1, res_2)
-    }
-  }
+  ## -------- NOTE: This is not neccessary to keep only one column, so we don't use this part of the script
+  ## if the column Fuzzy == FALSE, only one column keeps 
+  # tst <- tapply(res$Fuzzy, res$SORTER, function(x)length(unique(x)))
+  # tst <- as.numeric(names(tst[tst>1]))
+  # if(length(tst)>0) res <- res[-which(res$SORTER%in%tst & res$Fuzzy==TRUE),]
+  # rm(tst)
+  # tst <- table(res$SORTER[which(res$Fuzzy==FALSE)])
+  # tst <- as.numeric(names(tst[tst>1]))
+  # if(length(tst)>0){
+  # for(i in 1:length(tst)){
+  # res_1 <- res[which(res$SORTER==tst[i]),]
+  # res_2 <- res[-which(res$SORTER==tst[i]),]
+  # res_1 <- res_1[which(res_1$name.dist==min(res_1$name.dist)),]
+  # if(nrow(res_1)>1) res_1 <- res_1[which(res_1$author.dist==min(res_1$author.dist)),]
+  # res <- rbind(res_1, res_2)
+  # rm(res_1, res_2)
+  # }
+  # }
   
   ## add new columns
   res$Name_set <- NA
@@ -687,7 +710,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(length(whichs)>0) res <- res[-whichs,]
   rm(whichs)
   
-  ##------- add the accepted species-level into the new column "Accepted_SPNAME"
+  ##------- add the accepted species-level names into the new column "Accepted_SPNAME"
   res$Accepted_SPNAME <- NA
   
   epithets2 <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "subprol.","cv.", "var", "f", "fo", "fo.", "form", "forma", "forma.", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
