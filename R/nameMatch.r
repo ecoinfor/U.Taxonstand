@@ -678,6 +678,9 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   tst <- as.numeric(names(tst[tst>1]))
   if(length(tst)>0){
     for(i in 1:length(tst)){
+      which_i <- which(res$SORTER==tst[i] & res$NOTE=="No matching result")
+      if(length(which_i)>0) res <- res[-which_i,]
+      rm(which_i)
       res$Name_set[which(res$SORTER==tst[i])] <- rank(-res$Score[which(res$SORTER==tst[i])],ties.method = "random")
     }
     rm(i,tst)

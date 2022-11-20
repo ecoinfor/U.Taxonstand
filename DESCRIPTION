@@ -1,7 +1,7 @@
 Package: U.Taxonstand
 Type: Package
 Title: Taxonomic Standardization of Scientific Names of Plants and Animals
-Version: 1.1.0
+Version: 1.1.1
 Author: Jian Zhang, Hong Qian
 Maintainer: Jian Zhang <jzhang1982@gmail.com>
 Description: Automated standardization and harmonization of scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success.
