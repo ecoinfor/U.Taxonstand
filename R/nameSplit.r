@@ -60,71 +60,73 @@ nameSplit <- function(splist){
     ## Further revisions
     spparts <- unlist(strsplit(sp, " "))
     
-    epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
-    whichs <- which(spparts%in%c(epithets, toupper(epithets)))
-    
-    if(length(whichs)>0 & whichs[1]!=1){
-      Author <- paste(spparts[-c(1:(max(whichs)+1))], collapse=" ")
-      species <- paste(spparts[c(1:(max(whichs)+1))], collapse=" ")
-      if(length(whichs)==1 & "X"%in%spparts[whichs]) Rank <- 2
-      if(length(whichs)==1 & !"X"%in%spparts[whichs]) Rank <- 3
-      if(length(whichs)>1 & "X"%in%spparts[whichs]){
-        if(length(which(spparts=="X"))==1) Rank <- length(whichs)+1
-        if(length(which(spparts=="X"))>1) Rank <- length(whichs)
-      }
-      if(length(whichs)>1 & !"X"%in%spparts[whichs]) Rank <- length(whichs)+2
-    }
-    
-    if(length(whichs)==0){
-      Author <- paste(spparts[-c(1:2)], collapse=" ")
-      if(length(spparts)==1){
-        species <- spparts
-        Rank <- 1
-      }
-      if(length(spparts)>1){
-        species <- paste(spparts[1:2], collapse=" ")
-        Rank <- 2
-      }
-    }
-    
-    if(length(whichs)>0 & whichs[1]==1){
-      whichsNew <- whichs[-1]
-      if(length(whichsNew)>0){
-        Author <- paste(spparts[-c(1:(max(whichsNew)+1))], collapse=" ")
-        species <- paste(spparts[c(1:(max(whichsNew)+1))], collapse=" ")
-        if(length(whichsNew)==1 & "X"%in%spparts[whichsNew]) Rank <- 2
-        if(length(whichsNew)==1 & !"X"%in%spparts[whichsNew]) Rank <- 3
-        if(length(whichsNew)>1 & "X"%in%spparts[whichsNew]){
-          if(length(which(spparts=="X"))==1) Rank <- length(whichsNew)+1
-          if(length(which(spparts=="X"))>1) Rank <- length(whichsNew)
+    if(length(spparts)>0){
+        epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
+        whichs <- which(spparts%in%c(epithets, toupper(epithets)))
+        
+        if(length(whichs)>0 & whichs[1]!=1){
+          Author <- paste(spparts[-c(1:(max(whichs)+1))], collapse=" ")
+          species <- paste(spparts[c(1:(max(whichs)+1))], collapse=" ")
+          if(length(whichs)==1 & "X"%in%spparts[whichs]) Rank <- 2
+          if(length(whichs)==1 & !"X"%in%spparts[whichs]) Rank <- 3
+          if(length(whichs)>1 & "X"%in%spparts[whichs]){
+            if(length(which(spparts=="X"))==1) Rank <- length(whichs)+1
+            if(length(which(spparts=="X"))>1) Rank <- length(whichs)
+          }
+          if(length(whichs)>1 & !"X"%in%spparts[whichs]) Rank <- length(whichs)+2
         }
-        if(length(whichsNew)>1 & !"X"%in%spparts[whichsNew]) Rank <- length(whichsNew)+2
+        
+        if(length(whichs)==0){
+          Author <- paste(spparts[-c(1:2)], collapse=" ")
+          if(length(spparts)==1){
+            species <- spparts
+            Rank <- 1
+          }
+          if(length(spparts)>1){
+            species <- paste(spparts[1:2], collapse=" ")
+            Rank <- 2
+          }
+        }
+        
+        if(length(whichs)>0 & whichs[1]==1){
+          whichsNew <- whichs[-1]
+          if(length(whichsNew)>0){
+            Author <- paste(spparts[-c(1:(max(whichsNew)+1))], collapse=" ")
+            species <- paste(spparts[c(1:(max(whichsNew)+1))], collapse=" ")
+            if(length(whichsNew)==1 & "X"%in%spparts[whichsNew]) Rank <- 2
+            if(length(whichsNew)==1 & !"X"%in%spparts[whichsNew]) Rank <- 3
+            if(length(whichsNew)>1 & "X"%in%spparts[whichsNew]){
+              if(length(which(spparts=="X"))==1) Rank <- length(whichsNew)+1
+              if(length(which(spparts=="X"))>1) Rank <- length(whichsNew)
+            }
+            if(length(whichsNew)>1 & !"X"%in%spparts[whichsNew]) Rank <- length(whichsNew)+2
+          }
+          if(length(whichsNew)==0){
+            Author <- paste(spparts[-c(1:3)], collapse=" ")
+            species <- paste(spparts[1:3], collapse=" ")
+            Rank <- 2
+          }
+        }
+        rm(whichs, spparts)
+        
+        ## further work for the names without epithets (e.g., Accipiter badius cenchroides (Temminck, 1824))
+        if(substr(Author, 1, 1)%in%letters){
+          part01 <- unlist(strsplit(Author, " "))
+          species <- paste(species, part01[1], collapse=" ")
+          Author <- paste(part01[-1], collapse=" ")
+          rm(part01)
+          if(substr(Author, 1, 1)%in%letters){
+            part01 <- unlist(strsplit(Author, " "))
+            species <- paste(species, part01[1], collapse=" ")
+            Author <- paste(part01[-1], collapse=" ")
+            rm(part01)
+          }
+        }
+        
+        ##-------------
+        res <- data.frame(Submitted_Name_Author=sp_orig, Name = species, Author=Author, Rank=Rank)
+        return(res)
       }
-      if(length(whichsNew)==0){
-        Author <- paste(spparts[-c(1:3)], collapse=" ")
-        species <- paste(spparts[1:3], collapse=" ")
-        Rank <- 2
-      }
-    }
-    rm(whichs, spparts)
-    
-    ## further work for the names without epithets (e.g., Accipiter badius cenchroides (Temminck, 1824))
-    if(substr(Author, 1, 1)%in%letters){
-      part01 <- unlist(strsplit(Author, " "))
-      species <- paste(species, part01[1], collapse=" ")
-      Author <- paste(part01[-1], collapse=" ")
-      rm(part01)
-      if(substr(Author, 1, 1)%in%letters){
-        part01 <- unlist(strsplit(Author, " "))
-        species <- paste(species, part01[1], collapse=" ")
-        Author <- paste(part01[-1], collapse=" ")
-        rm(part01)
-      }
-    }
-    
-    ##-------------
-    res <- data.frame(Submitted_Name_Author=sp_orig, Name = species, Author=Author, Rank=Rank)
-    return(res)
   }
   
   ##--- For all species together

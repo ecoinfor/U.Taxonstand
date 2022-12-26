@@ -25,7 +25,8 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   ## I suggest you to save the result as a R datafile.
   ## Then, you can use it directly for further name matching.
   ## It will save some time to prepare the data.
-  
+
+  if(!is.data.frame(dataSource)) dataSource <- data.frame(Name=dataSource)
   colnames(dataSource) <- toupper(colnames(dataSource))
   
   ##-------------- preparing the datasets
@@ -71,9 +72,13 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   
   ## if the column "Genus" is missing, add one column "Genus"
   if(!"GENUS"%in%colnames(dataSource)){
+    dataSource$NameClean[which(dataSource$NameClean=="")] <- "NONE"
+    dataSource$NameClean[which(is.na(dataSource$NameClean==""))] <- "NONE"
     dataSource$GENUS <- strsplit(dataSource$NameClean, " ")%>%sapply(extract2, 1)
     dataSource$GENUS <- tolower(dataSource$GENUS)
     substr(dataSource$GENUS, 1, 1) <- toupper(substr(dataSource$GENUS, 1, 1))
+    dataSource$GENUS[which(dataSource$GENUS%in%c("NONE","None"))] <- ""
+    dataSource$NameClean[which(dataSource$GENUS=="")] <- ""
   }
   
   return(dataSource)
