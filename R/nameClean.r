@@ -81,5 +81,7 @@ nameClean <- function(dataSource=NULL, author=TRUE){
     dataSource$NameClean[which(dataSource$GENUS=="")] <- ""
   }
   
+  dataSource$NameClean <- trimws(dataSource$NameClean)
+  
   return(dataSource)
 }

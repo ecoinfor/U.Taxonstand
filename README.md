@@ -65,7 +65,7 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 - Qian, Hong. "Patterns of phylogenetic relatedness of non-native plants across the introduction–naturalization–invasion continuum in China." Plant Diversity (2022).
 
-- Huang, Xing-Zhao, et al. "Are allometric model parameters of aboveground biomass for trees phylogenetically constrained?." Plant Diversity (2022).
+- Huang, Xing-Zhao, et al. "Are allometric model parameters of aboveground biomass for trees phylogenetically constrained?" Plant Diversity (2022).
 
 - Qian, Hong, et al. "Effects of non‐native species on phylogenetic dispersion of freshwater fish communities in North America." Diversity and Distributions (2022).
 
