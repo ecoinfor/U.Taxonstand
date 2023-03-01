@@ -54,7 +54,7 @@ sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.","Eupatorium betoniciforme 
 
 If you use this package, please cite it.
 
-Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, in press. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
+Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, 45(1): 1-5. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
 
 
 ## Publications Citing `U.Taxonstand`
