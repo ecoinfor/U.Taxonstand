@@ -59,6 +59,8 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 ## Publications Citing `U.Taxonstand`
 
+- Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). "The big four of plant taxonomy–a comparison of global checklists of vascular plant names." New Phytologist. https://doi.org/10.1111/nph.18961
+
 - Qian, Hong, Michael Kessler, and Yi Jin. "Spatial patterns and climatic drivers of phylogenetic structure for ferns along the longest elevational gradient in the world." Ecography (2022): e06516.
 
 - Zhou, Ya-Dong, et al. "Geographic patterns of taxonomic and phylogenetic β-diversity of aquatic angiosperms in China." Plant Diversity (2022).
@@ -72,3 +74,5 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 - Jin, Yi, and Hong Qian. "Drivers of the differentiation between broad-leaved trees and shrubs in the shift from evergreen to deciduous leaf habit in forests of eastern Asian subtropics." Plant Diversity (2023).
 
 - Qian, Hong, and Tao Deng. "Species invasion and phylogenetic relatedness of vascular plants on the Qinghai-Tibetan Plateau, the roof of the world." Plant Diversity (2023).
+
+- etc.
