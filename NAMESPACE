@@ -3,6 +3,7 @@
 export("%>%")
 export(nameClean)
 export(nameMatch)
+export(nameMatch_LPSC)
 export(nameMatch_ck)
 export(nameSplit)
 import(magrittr)
