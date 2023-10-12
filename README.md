@@ -61,6 +61,8 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 - Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). "The big four of plant taxonomy–a comparison of global checklists of vascular plant names." New Phytologist. https://doi.org/10.1111/nph.18961
 
+- Vargas, Pablo, Ruben Heleno, and José M. Costa. "EuDiS-A comprehensive database of the seed dispersal syndromes of the European flora." Biodiversity Data Journal 11 (2023).
+
 - Qian, Hong, Michael Kessler, and Yi Jin. "Spatial patterns and climatic drivers of phylogenetic structure for ferns along the longest elevational gradient in the world." Ecography (2022): e06516.
 
 - Zhou, Ya-Dong, et al. "Geographic patterns of taxonomic and phylogenetic β-diversity of aquatic angiosperms in China." Plant Diversity (2022).

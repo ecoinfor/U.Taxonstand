@@ -82,6 +82,17 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   }
   
   dataSource$NameClean <- trimws(dataSource$NameClean)
+
+  ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp")
+  for(i in 1:length(dataSource$NameClean)){
+    end_temp <- endsWith(dataSource$NameClean[i], paste(" ", epithets, sep=""))
+    which_temp <- which(end_temp==TRUE)
+    if(length(which_temp)>0) dataSource$NameClean[i] <- gsub(paste(" ", epithets[which_temp], sep=""), "", dataSource$NameClean[i], ignore.case=TRUE)
+  rm(end_temp, which_temp)
+  }
+  rm(epithets)
   
+  #  the final result
   return(dataSource)
 }

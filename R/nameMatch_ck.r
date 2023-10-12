@@ -46,7 +46,7 @@ nameMatch_ck <- function(spData, spSource=NULL, author=TRUE, max.distance = 1)
   if(author==FALSE) Author <- ""
   if(is.na(Author)) Author <- ""
   if(Author=="") author=FALSE
-  
+
   #####################################
   #--- To match with the species names within exactly the same name in the database
   if(length(intersect(sp,spSource$NAMECLEAN))>=1) cck <- intersect(sp,spSource$NAMECLEAN)

@@ -118,8 +118,8 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   }
   
   ##------------	
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
-  
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","sp.","sp")
+
   ##------------
   print("Loading and processing the database...")
   
@@ -205,6 +205,14 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     substr(spList$NAMECLEAN, 1, 1) <- toupper(substr(spList$NAMECLEAN, 1, 1))
   }
   
+  ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
+  for(i in 1:length(spList$NAMECLEAN)){
+    end_temp <- endsWith(spList$NAMECLEAN[i], paste(" ", epithets, sep=""))
+    which_temp <- which(end_temp==TRUE)
+    if(length(which_temp)>0) spList$NAMECLEAN[i] <- gsub(paste(" ", epithets[which_temp], sep=""), "", spList$NAMECLEAN[i], ignore.case=TRUE)
+    rm(end_temp, which_temp)
+  }
+
   ## In the AUTHOR column of both file, change “fil.” to “f.” and change “Linn.” to “L.”.
   if(author==TRUE){
     whichs <- which(grepl(" fil\\.", spSource$AUTHOR, ignore.case=TRUE))
@@ -246,7 +254,22 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     if(!exists("splitName_spList")) splitName_spList <- strsplit(spList$NAMECLEAN, " ")
     spList$RANK <- unlist(lapply(splitName_spList, length))
   }
-  
+
+  ## correct the column "Rank" if it exists
+  if("RANK"%in%colnames(spSource)){
+    if(!exists("splitName_spSource")) splitName_spSource <- strsplit(spSource$NAMECLEAN, " ")
+    rank_temp <- unlist(lapply(splitName_spSource, length))
+    spSource$RANK[which(spSource$RANK!=rank_temp)] <- rank_temp[which(spSource$RANK!=rank_temp)]
+    rm(rank_temp)
+  }
+
+  if("RANK"%in%colnames(spList)){
+    if(!exists("splitName_spList")) splitName_spList <- strsplit(spList$NAMECLEAN, " ")
+    rank_temp <- unlist(lapply(splitName_spList, length))
+    spList$RANK[which(spList$RANK!=rank_temp)] <- rank_temp[which(spList$RANK!=rank_temp)]
+    rm(rank_temp)
+  }
+
   ## some minor corrections in the column "ACCEPTED_ID"
   if(!"ACCEPTED_ID"%in%colnames(spSource)) spSource$ACCEPTED_ID <- NA
   spSource$ACCEPTED_ID[which(spSource$ACCEPTED_ID==0)] <- NA
@@ -311,16 +334,80 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(exists("res00") & exists("res01")) res01 <- rbind(res00, res01)
   if(exists("res00") & !exists("res01")) res01 <- res00
   if(exists("res00")) rm(res00)
+ 
+  ##------------------------------------------------
+  ##------------------------------------------------
+  # If RANK==1, to match with the genus or family directly
+  # --- Genus
+  which00 <- which(spList$NAMECLEAN%in%c(spSource$GENUS))
+  if(length(which00)>0){
+    res00 <- data.frame(SORTER=spList$SORTER[which00],
+                        Submitted_Name=spList$NAME[which00],
+                        Submitted_Author=spList$AUTHOR[which00],
+                        Submitted_Genus=spList$GENUS[which00],
+                        Submitted_Rank=1,
+                        Name_in_database=spList$NAMECLEAN[which00],
+                        Author_in_database=NA,
+                        Genus_in_database=spList$NAMECLEAN[which00],
+                        Rank_in_database=1,
+                        ID_in_database=NA,
+                        Fuzzy=NA,
+                        NOTE="Matching only genus level",
+                        Name_spLev=NA,
+                        ACCEPTED_ID=NA,
+                        FAMILY=NA)
+    for(i in 1:nrow(res00)){
+      tst <- table(spSource$FAMILY[which(spSource$GENUS==res00$Genus_in_database[i])])
+      if(length(tst)>0) res00$FAMILY[i] <- names(sort(tst, decreasing=T))[1]
+      rm(tst)
+    }
+  }
+  
+  rm(which00)
+  if(exists("res00") & exists("res01")) res01 <- rbind(res00, res01)
+  if(exists("res00") & !exists("res01")) res01 <- res00
+  if(exists("res00")) rm(res00)
+  
+
+  # --- Family
+  which00 <- which(spList$NAMECLEAN%in%c(spSource$FAMILY))
+  if(length(which00)>0){
+     res00 <- data.frame(SORTER=spList$SORTER[which00],
+                         Submitted_Name=spList$NAME[which00],
+                         Submitted_Author=spList$AUTHOR[which00],
+                         Submitted_Genus=NA,
+                         Submitted_Rank=1,
+                         Name_in_database=spList$NAMECLEAN[which00],
+                         Author_in_database=NA,
+                         Genus_in_database=NA,
+                         Rank_in_database=1,
+                         ID_in_database=NA,
+                         Fuzzy=NA,
+                         NOTE="Matching only family level",
+                         Name_spLev=NA,
+                         ACCEPTED_ID=NA,
+                         FAMILY=spList$NAMECLEAN[which00])
+  }
+  rm(which00)
+  if(exists("res00") & exists("res01")) res01 <- rbind(res00, res01)
+  if(exists("res00") & !exists("res01")) res01 <- res00
+  if(exists("res00")) rm(res00)
+                   
   
   ##------------------------------------------------
   ##------------------------------------------------
   # the species that cannot be directly matched with spSource
   spSource$GENUS00 <- toupper(gsub("-", "", spSource$GENUS, ignore.case=TRUE))
   
-  whichs <- unique(c(which(spList$NAMECLEAN%in%spSource$NAMECLEAN),which(spList$NAME%in%spSource$NAME)))
-  if(length(whichs)>0) spList02 <- spList[-whichs,]
-  if(length(whichs)==0) spList02 <- spList
-  rm(whichs)
+  # whichs <- unique(c(which(spList$NAMECLEAN%in%spSource$NAMECLEAN),which(spList$NAME%in%spSource$NAME)))
+  if(exists("res01")){
+    whichs <- which(spList$SORTER%in%res01$SORTER)
+    if(length(whichs)>0) spList02 <- spList[-whichs,]
+    if(length(whichs)==0) spList02 <- spList
+    rm(whichs)
+  }
+  
+  if(!exists("res01")) spList02 <- spList
   
   print(paste(nrow(spList02), ifelse(nrow(spList02)>1," names (", " name ("), round(nrow(spList02)/nrow(spList)*100,2), "%) that need to do fuzzy matching", sep=""))
   
@@ -553,7 +640,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     
     if(author==TRUE) res$author.dist[i] <- as.numeric(utils::adist(res$Submitted_Author[i], y = res$Author_in_database[i]))
   }
-  rm(i)
+  # rm(i)
   
   ## give a matching score based on name.dist and author.dist
   ## give a weight of 80% for name.dist and 20% for author.dist
@@ -766,7 +853,8 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   tst <- tapply(res$NOTE, res$SORTER, function(x)length(unique(x)))
   tst <- as.numeric(names(tst[tst>1]))
   if(length(tst)>0){
-    res <- res[-which(res$SORTER%in%tst & res$NOTE=="No matching result"),]
+    which00 <- which(res$SORTER%in%tst & res$NOTE=="No matching result")
+    if(length(which00)>0) res <- res[-which00,]
   }
   rm(tst)
   
@@ -809,7 +897,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   rm(whichs)
   
   ## If Submitted_Rank==1, remove some matched variables
-  whichs <- which(res$Submitted_Rank==1)
+  whichs <- which(res$Submitted_Rank==1 & is.na(res$NOTE))
   if(length(whichs)>0){
     res$Name_in_database[whichs] <- NA
     res$Author_in_database[whichs] <- NA
@@ -845,7 +933,12 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     }
     rm(whichs)
   }
-  
+
+  ## remove the matched Score <= 0.5 (based on current experience, the matching results is really worse)
+  which_temp <- which(res$Name_set>1 & res$Score<=0.5)
+  if(length(which_temp)>0) res <- res[-which_temp,]
+  rm(which_temp)
+
   ## return the result
   return(res)
 }

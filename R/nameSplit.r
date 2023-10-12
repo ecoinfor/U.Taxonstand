@@ -33,7 +33,7 @@ nameSplit <- function(splist){
     sp <- gsub(" \u00d7 ", " X ", sp, ignore.case=TRUE)
     sp <- gsub("\\+ ", "", sp, ignore.case=TRUE)
     sp <- gsub("\\+", "", sp, ignore.case=TRUE)
-    sp <- gsub(paste(paste(" ", c("ssp","subsp.","subsp")," ",sep=""), collapse="|"), " ssp. ", sp, ignore.case=TRUE)
+    sp <- gsub(paste(paste(" ", c("ssp","subsp.","subsp", "sp", "sp.")," ",sep=""), collapse="|"), " ssp. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("cv","cultivar.","cultivar")," ",sep=""), collapse="|"), " cv. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("nothossp","nothosubsp.","nothosubsp")," ",sep=""), collapse="|"), " nothossp. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("prol","proles.","proles")," ",sep=""), collapse="|"), " prol. ", sp, ignore.case=TRUE)
@@ -56,12 +56,18 @@ nameSplit <- function(splist){
       if(length(whichs)==0) break
     }
     rm(whichs,j)
-    
+
+    ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
+    epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp")
+    end_temp <- endsWith(sp, paste(" ", epithets, sep=""))
+    which_temp <- which(end_temp==TRUE)
+    if(length(which_temp)>0) sp <- gsub(paste(" ", epithets[which_temp], sep=""), "", sp, ignore.case=TRUE)
+    rm(end_temp, which_temp)
+        
     ## Further revisions
     spparts <- unlist(strsplit(sp, " "))
     
     if(length(spparts)>0){
-        epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
         whichs <- which(spparts%in%c(epithets, toupper(epithets)))
         
         if(length(whichs)>0 & whichs[1]!=1){
@@ -121,6 +127,8 @@ nameSplit <- function(splist){
             Author <- paste(part01[-1], collapse=" ")
             rm(part01)
           }
+          
+          rm(epithets)
         }
         
         ##-------------
@@ -128,7 +136,7 @@ nameSplit <- function(splist){
         return(res)
       }
   }
-  
+   
   ##--- For all species together
   result <- do.call("rbind", lapply(splist, nameSplit_ck))
   return(result)

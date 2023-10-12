@@ -1,11 +1,11 @@
 Package: U.Taxonstand
 Type: Package
 Title: Taxonomic Standardization of Scientific Names of Plants and Animals
-Version: 1.1.3
+Version: 1.2.0
 Author: Jian Zhang, Hong Qian
 Maintainer: Jian Zhang <jzhang1982@gmail.com>
 Description: Automated standardization and harmonization of scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success.
-Imports: plyr, magrittr
+Imports: plyr, magrittr, devtools, rWCVPdata, LPSC
 Suggests: pbapply
 URL: https://github.com/ecoinfor/U.Taxonstand
 BugReports: https://github.com/ecoinfor/U.Taxonstand/issues

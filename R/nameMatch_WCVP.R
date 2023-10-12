@@ -1,6 +1,6 @@
-#'The function for standardizing a list of input plant names using the Checklist of Plant Species in China (version 2023)
+#'The function for standardizing a list of input plant names using the World Checklist of Vascular Plants (WCVP)
 #'
-#' Replacing synonyms by accepted names and removing orthographical errors in the raw names. This function is used to match with the Checklist of Plant Species in China (version 2023). The function was developed based on three databases of the R package LPSC.
+#' Replacing synonyms by accepted names and removing orthographical errors in the raw names. This function is used to match with the World Checklist of Vascular Plants (WCVP). The function was developed based on the database of the R package rWCVPdata.
 #'
 #' @param spList A data frame or a character vector specifying the input taxon. An example of data frame could be found in the example data 'spExample'.A character vector specifying the input taxa, each element including genus and specific epithet and, potentially, author name and infraspecific abbreviation and epithet.
 #'
@@ -36,31 +36,33 @@
 #'    \item{\emph{NOTE}}{: This column contains some notes, e.g. no matching or multiple matching results for a given name, or only matching at species level for a trinomial name.}
 #'}
 #'
-#'@references Zhang, J. (2023). LPSC: Tools for searching List of plant species in China. R package version 0.8.1, https://github.com/helixcn/LPSC.
+#'@references Govaerts, R., Nic Lughadha, E. et al. The World Checklist of Vascular Plants, a continuously updated resource for exploring global plant diversity. Sci Data 8, 215 (2021). https://doi.org/10.1038/s41597-021-00997-6
 #'
 #'@import magrittr
 #'@import plyr
-#'@import LPSC
-#'@import devtools
+#'@import rWCVPdata
 #'
 #'@examples
 #'
 #'## The input names as a character vector
-#'nameMatch_LPSC(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.", Append=FALSE)
-#'nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#'nameMatch_WCVP(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.")
+#'nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
 #'"Cyclobalanopsis myrsinifolium",
-#'"Cyclobalamopsis mrrsinifolia"), Append=TRUE)
+#'"Cyclobalanopsis mrrsinifolia",
+#'"Cyclobalamopsis mrrsinifolia"))
 #'
 #'## Using the additional data of genus pairs for fuzzy matching of genus names
 #'data(genusPairs_Plants)
-#'nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-#'"Cyclobalanopsis myrsinifolium","Cyclobalamopsis myrsinifolia",
+#'nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#'"Cyclobalanopsis myrsinifolium",
+#'"Cyclobalanopsis mrrsinifolia",
+#'"Cyclobalamopsis myrsinifolia",
 #'"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
-#'genusPairs=genusPairs_Plants, Append=TRUE)
+#'genusPairs=genusPairs_Plants)
 #'
 #'
 #'@export
-nameMatch_LPSC <- function(spList=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, Append=TRUE)
+nameMatch_WCVP <- function(spList=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, Append=FALSE)
 {
   ################################################
   ################  The main  function for name matching
@@ -75,23 +77,14 @@ nameMatch_LPSC <- function(spList=NULL, author = TRUE, max.distance= 1, genusPai
   if(!"SORTER"%in%colnames(spList)) spList$SORTER <- 1:nrow(spList)
   
   ##------------	convert the data from R package LPSC into the required data format for spSource
-  if (!requireNamespace("LPSC")) devtools::install_github("helixcn/LPSC")
-  spSource <- LPSC::dat_all_sp2023[,c(3,5,16,6,2,23,7,9)]
+  if (!requireNamespace("rWCVPdata")) devtools::install_github('matildabrown/rWCVPdata')
   
-  # add the FAMILY for all species and other information for accepted species names
-  spSource <- merge(spSource, unique(LPSC::dat_all_accepted_sp2023[,c("family_id","family","family_c","kingdom","kingdom_c","phylum","phylum_c","class","class_c","order","order_c")]), by="family_id", all.x=TRUE)
+  spSource <- rWCVPdata::wcvp_names[,c(1,22,23,7,24,5)]
   
-  # add IUCN status and the China Biodiversity Red List (2020)
-  dat_CBRL <- LPSC::dat_CBRL2020_higher_plants
-  colnames(dat_CBRL)[5] <- "canonical_name"
-  spSource <- merge(spSource, dat_CBRL[,5:9], by="canonical_name", all.x=TRUE)
-  rm(dat_CBRL)
-  
-  spSource <- spSource[,c(3,1,4,5,6,9,7,8,10:22)]
   colnames(spSource)[1:6] <- c("ID", "Name", "Author", "Genus", "ACCEPTED_ID","FAMILY")
   colnames(spSource) <- toupper(colnames(spSource))
   spSource$ACCEPTED_ID[which(spSource$ID==spSource$ACCEPTED_ID)] <- NA
-    
+  
   ##------------	check the data formats
   if(!is.data.frame(spSource)) stop("The source database is not a data frame")
   if(!"NAME"%in%colnames(spSource)) stop("Please check if the source database has the column 'NAME'")
