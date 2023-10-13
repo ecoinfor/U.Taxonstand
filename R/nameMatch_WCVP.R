@@ -40,25 +40,24 @@
 #'
 #'@import magrittr
 #'@import plyr
-#'@import rWCVPdata
 #'
 #'@examples
 #'
-#'## The input names as a character vector
-#'nameMatch_WCVP(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.")
-#'nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-#'"Cyclobalanopsis myrsinifolium",
-#'"Cyclobalanopsis mrrsinifolia",
-#'"Cyclobalamopsis mrrsinifolia"))
+#'## The input names as a character vector (NOT RUN)
+#'#nameMatch_WCVP(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.")
+#'#nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#'#"Cyclobalanopsis myrsinifolium",
+#'#"Cyclobalanopsis mrrsinifolia",
+#'#"Cyclobalamopsis mrrsinifolia"))
 #'
-#'## Using the additional data of genus pairs for fuzzy matching of genus names
-#'data(genusPairs_Plants)
-#'nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-#'"Cyclobalanopsis myrsinifolium",
-#'"Cyclobalanopsis mrrsinifolia",
-#'"Cyclobalamopsis myrsinifolia",
-#'"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
-#'genusPairs=genusPairs_Plants)
+#'## Using the additional data of genus pairs for fuzzy matching of genus names  (NOT RUN)
+#'#data(genusPairs_Plants)
+#'#nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#'#"Cyclobalanopsis myrsinifolium",
+#'#"Cyclobalanopsis mrrsinifolia",
+#'#"Cyclobalamopsis myrsinifolia",
+#'#"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
+#'#genusPairs=genusPairs_Plants)
 #'
 #'
 #'@export
@@ -76,7 +75,7 @@ nameMatch_WCVP <- function(spList=NULL, author = TRUE, max.distance= 1, genusPai
   ## add the column "SORTER" if missing
   if(!"SORTER"%in%colnames(spList)) spList$SORTER <- 1:nrow(spList)
   
-  ##------------	convert the data from R package LPSC into the required data format for spSource
+  ##------------	convert the data from R package rWCVPdata into the required data format for spSource
   if (!requireNamespace("rWCVPdata")) devtools::install_github('matildabrown/rWCVPdata')
   
   spSource <- rWCVPdata::wcvp_names[,c(1,22,23,7,24,5)]

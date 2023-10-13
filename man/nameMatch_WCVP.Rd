@@ -53,21 +53,21 @@ Replacing synonyms by accepted names and removing orthographical errors in the r
 }
 \examples{
 
-## The input names as a character vector
-nameMatch_WCVP(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.")
-nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-"Cyclobalanopsis myrsinifolium",
-"Cyclobalanopsis mrrsinifolia",
-"Cyclobalamopsis mrrsinifolia"))
+## The input names as a character vector (NOT RUN)
+#nameMatch_WCVP(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.")
+#nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#"Cyclobalanopsis myrsinifolium",
+#"Cyclobalanopsis mrrsinifolia",
+#"Cyclobalamopsis mrrsinifolia"))
 
-## Using the additional data of genus pairs for fuzzy matching of genus names
-data(genusPairs_Plants)
-nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-"Cyclobalanopsis myrsinifolium",
-"Cyclobalanopsis mrrsinifolia",
-"Cyclobalamopsis myrsinifolia",
-"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
-genusPairs=genusPairs_Plants)
+## Using the additional data of genus pairs for fuzzy matching of genus names  (NOT RUN)
+#data(genusPairs_Plants)
+#nameMatch_WCVP(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#"Cyclobalanopsis myrsinifolium",
+#"Cyclobalanopsis mrrsinifolia",
+#"Cyclobalamopsis myrsinifolia",
+#"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
+#genusPairs=genusPairs_Plants)
 
 
 }

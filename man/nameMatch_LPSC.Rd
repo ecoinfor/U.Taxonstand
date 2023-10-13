@@ -53,18 +53,18 @@ Replacing synonyms by accepted names and removing orthographical errors in the r
 }
 \examples{
 
-## The input names as a character vector
-nameMatch_LPSC(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.", Append=FALSE)
-nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-"Cyclobalanopsis myrsinifolium",
-"Cyclobalamopsis mrrsinifolia"), Append=TRUE)
+## The input names as a character vector (NOT RUN)
+#nameMatch_LPSC(spList="Cyclobalanopsis myrsinifolia (Blume) Oerst.", Append=FALSE)
+#nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#"Cyclobalanopsis myrsinifolium",
+#"Cyclobalamopsis mrrsinifolia"), Append=TRUE)
 
 ## Using the additional data of genus pairs for fuzzy matching of genus names
-data(genusPairs_Plants)
-nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
-"Cyclobalanopsis myrsinifolium","Cyclobalamopsis myrsinifolia",
-"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
-genusPairs=genusPairs_Plants, Append=TRUE)
+#data(genusPairs_Plants)
+#nameMatch_LPSC(spList=c("Cyclobalanopsis myrsinifolia (Blume) Oerst.",
+#"Cyclobalanopsis myrsinifolium","Cyclobalamopsis myrsinifolia",
+#"Evodia chaffanjonii","Evodia lyi","Euodia lyi"),
+#genusPairs=genusPairs_Plants, Append=TRUE)
 
 
 }
