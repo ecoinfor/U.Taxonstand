@@ -30,7 +30,7 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   colnames(dataSource) <- toupper(colnames(dataSource))
   
   ##-------------- preparing the datasets
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles")
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","aff.","cf.","af.","cff.")
   
   dataSource$NameClean <- dataSource$NAME
   dataSource$NameClean <- gsub(paste0("\\s+|", intToUtf8(160)), " ", as.character(dataSource$NameClean))
@@ -84,7 +84,7 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   dataSource$NameClean <- trimws(dataSource$NameClean)
 
   ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp")
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.")
   for(i in 1:length(dataSource$NameClean)){
     end_temp <- endsWith(dataSource$NameClean[i], paste(" ", epithets, sep=""))
     which_temp <- which(end_temp==TRUE)
