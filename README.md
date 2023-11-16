@@ -57,24 +57,28 @@ If you use this package, please cite it.
 Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, 45(1): 1-5. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
 
 
-## Publications Citing `U.Taxonstand`
+## Selected Publications Citing `U.Taxonstand`
 
-- Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). "The big four of plant taxonomy–a comparison of global checklists of vascular plant names." New Phytologist. https://doi.org/10.1111/nph.18961
+- Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). The big four of plant taxonomy – a comparison of global checklists of vascular plant names. New Phytologist. https://doi.org/10.1111/nph.18961
 
-- Vargas, Pablo, Ruben Heleno, and José M. Costa. "EuDiS-A comprehensive database of the seed dispersal syndromes of the European flora." Biodiversity Data Journal 11 (2023).
+- Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2023). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, e12990. https://doi.org/10.1111/conl.12990
 
-- Qian, Hong, Michael Kessler, and Yi Jin. "Spatial patterns and climatic drivers of phylogenetic structure for ferns along the longest elevational gradient in the world." Ecography (2022): e06516.
+- Qian, H., Kessler, M., Zhang, J., Jin, Y., Soltis, D.E., Qian, S., Zhou, Y.D., Soltis, P.S. Angiosperm phylogenetic diversity is lower in Africa than South America . Science Advances, 9(46): eadj1022 https://doi.org/10.1126/sciadv.adj1022
 
-- Zhou, Ya-Dong, et al. "Geographic patterns of taxonomic and phylogenetic β-diversity of aquatic angiosperms in China." Plant Diversity (2022).
+- Vargas, Pablo, Ruben Heleno, and José M. Costa. EuDiS-A comprehensive database of the seed dispersal syndromes of the European flora. Biodiversity Data Journal 11 (2023). https://doi.org/10.3897/BDJ.11.e104079
 
-- Qian, Hong. "Patterns of phylogenetic relatedness of non-native plants across the introduction–naturalization–invasion continuum in China." Plant Diversity (2022).
+- Qian, Hong, Michael Kessler, and Yi Jin. Spatial patterns and climatic drivers of phylogenetic structure for ferns along the longest elevational gradient in the world. Ecography (2022): e06516. https://doi.org/10.1111/ecog.06516
 
-- Huang, Xing-Zhao, et al. "Are allometric model parameters of aboveground biomass for trees phylogenetically constrained?" Plant Diversity (2022).
+- Zhou, Ya-Dong, et al. Geographic patterns of taxonomic and phylogenetic β-diversity of aquatic angiosperms in China. Plant Diversity (2022). https://doi.org/10.1016/j.pld.2022.12.006
 
-- Qian, Hong, et al. "Effects of non‐native species on phylogenetic dispersion of freshwater fish communities in North America." Diversity and Distributions (2022).
+- Qian, Hong. Patterns of phylogenetic relatedness of non-native plants across the introduction–naturalization–invasion continuum in China. Plant Diversity (2022). https://doi.org/10.1016/j.pld.2022.12.005
 
-- Jin, Yi, and Hong Qian. "Drivers of the differentiation between broad-leaved trees and shrubs in the shift from evergreen to deciduous leaf habit in forests of eastern Asian subtropics." Plant Diversity (2023).
+- Huang, Xing-Zhao, et al. Are allometric model parameters of aboveground biomass for trees phylogenetically constrained? Plant Diversity (2022). https://doi.org/10.1016/j.pld.2022.11.005
 
-- Qian, Hong, and Tao Deng. "Species invasion and phylogenetic relatedness of vascular plants on the Qinghai-Tibetan Plateau, the roof of the world." Plant Diversity (2023).
+- Qian, Hong, et al. Effects of non‐native species on phylogenetic dispersion of freshwater fish communities in North America. Diversity and Distributions (2022). https://doi.org/10.1111/ddi.13647
+
+- Jin, Yi, and Hong Qian. Drivers of the differentiation between broad-leaved trees and shrubs in the shift from evergreen to deciduous leaf habit in forests of eastern Asian subtropics. Plant Diversity (2023). https://doi.org/10.1016/j.pld.2022.12.008
+
+- Qian, Hong, and Tao Deng. Species invasion and phylogenetic relatedness of vascular plants on the Qinghai-Tibetan Plateau, the roof of the world. Plant Diversity (2023). https://doi.org/10.1016/j.pld.2023.01.001
 
 - etc.
