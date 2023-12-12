@@ -29,6 +29,10 @@ data(spExample)
 res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1)
 head(res)
 
+# The current default only keeps the first 'best' matching result for each taxon name. If you want to check all the matched results, please change the option 'matchFirst=FALSE'.
+res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1, matchFirst=FALSE)
+dim(res)
+
 # Using the additional data of genus pairs for fuzzy matching of genus names
 data(spExample)
 data(genusPairs_Plants)
