@@ -10,6 +10,8 @@
 #'
 #' @param genusPairs Some genera have one or more variants in spelling (e.g. Euodia versus Evodia, Eccremis versus Excremis, Ziziphus versus Zizyphus). When a list of such genera is available, U.Taxonstand can use the information in the list as additional data to match names between the user’s species list and the taxonomic database. The data file should a dataframe with two columns (Genus01 and Genus02).
 #'
+#' @param matchFirst Logical. If TRUE, the function only keeps the first 'BEST' matching result for each input taxon. If FALST, all matching results are listed.
+#'
 #' @param Append Logical. If TRUE, the function will add other columns (e.g., geographic distribution and common names in different language) in the database into the final result.
 #'
 #' @return A data frame with the following columns: \itemize{
@@ -58,7 +60,7 @@
 #'
 #'
 #'@export
-nameMatch_LPSC <- function(spList=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, Append=TRUE)
+nameMatch_LPSC <- function(spList=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, matchFirst=TRUE, Append=TRUE)
 {
   ################################################
   ################  The main  function for name matching
@@ -107,6 +109,16 @@ nameMatch_LPSC <- function(spList=NULL, author = TRUE, max.distance= 1, genusPai
   
   ##------------	using the R function nameMatch for name matching
   res <- nameMatch(spList=spList, spSource=spSource, author = author, max.distance= max.distance, genusPairs=genusPairs, Append=Append)
+  
+  ## selecting the first 'best' matching result(s)
+  if(matchFirst==TRUE){
+    print("NOTE: Only the first 'BEST' matching result(s) included (Name_set equals to one).")
+    res <- res[which(res$Name_set==1),]
+  }
+
+  if(matchFirst==FALSE){
+    print("NOTE: All matching results are included. If you want to use the first 'BEST' matching result(s) only, you can select the results of the column 'Name_set' equals to one.")  
+  }
   
   ## return the result
   return(res)

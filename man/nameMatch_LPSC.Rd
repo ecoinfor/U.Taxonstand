@@ -9,6 +9,7 @@ nameMatch_LPSC(
   author = TRUE,
   max.distance = 1,
   genusPairs = NULL,
+  matchFirst = TRUE,
   Append = TRUE
 )
 }
@@ -20,6 +21,8 @@ nameMatch_LPSC(
 \item{max.distance}{A number indicating the maximum distance allows for a match in \code{\link[base:agrep]{agrep}} when performing corrections of spelling errors in specific epithets.}
 
 \item{genusPairs}{Some genera have one or more variants in spelling (e.g. Euodia versus Evodia, Eccremis versus Excremis, Ziziphus versus Zizyphus). When a list of such genera is available, U.Taxonstand can use the information in the list as additional data to match names between the user’s species list and the taxonomic database. The data file should a dataframe with two columns (Genus01 and Genus02).}
+
+\item{matchFirst}{Logical. If TRUE, the function only keeps the first 'BEST' matching result for each input taxon. If FALST, all matching results are listed.}
 
 \item{Append}{Logical. If TRUE, the function will add other columns (e.g., geographic distribution and common names in different language) in the database into the final result.}
 }

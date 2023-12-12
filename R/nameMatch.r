@@ -12,6 +12,8 @@
 #'
 #' @param genusPairs Some genera have one or more variants in spelling (e.g. Euodia versus Evodia, Eccremis versus Excremis, Ziziphus versus Zizyphus). When a list of such genera is available, U.Taxonstand can use the information in the list as additional data to match names between the user’s species list and the taxonomic database. The data file should a dataframe with two columns (Genus01 and Genus02).
 #'
+#' @param matchFirst Logical. If TRUE, the function only keeps the first 'BEST' matching result for each input taxon. If FALST, all matching results are listed.
+#' 
 #' @param Append Logical. If TRUE, the function will add other columns (e.g., geographic distribution and common names in different language) in the database into the final result.
 #'
 #' @return A data frame with the following columns: \itemize{
@@ -52,18 +54,19 @@
 #'## The input names as a character vector
 #'sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Turczaninowia fastigiata (Fisch.) DC.",
 #'"Zizyphora abd-el-asisii Hand.-Mazz.")
-#'nameMatch(spList=sps, spSource=databaseExample, author = TRUE, max.distance= 1)
+#'nameMatch(spList=sps, spSource=databaseExample, author = TRUE, max.distance= 1, matchFirst=TRUE)
 #'
 #'## The input names as a data frame
 #'data(spExample)
-#'res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1)
+#'res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1,
+#'matchFirst=TRUE)
 #'head(res)
 #'
 #'## Using the additional data of genus pairs for fuzzy matching of genus names
 #'data(spExample)
 #'data(genusPairs_Plants)
 #'res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.distance= 1, 
-#'genusPairs=genusPairs_Plants)
+#'genusPairs=genusPairs_Plants, matchFirst=TRUE)
 #'head(res)
 #'
 #'## Species name matching for bird species (Not run)
@@ -87,7 +90,7 @@
 #'# https://github.com/nameMatch/Database
 #'
 #'@export
-nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, Append=FALSE)
+nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1, genusPairs=NULL, matchFirst=TRUE, Append=FALSE)
 {
   ################################################
   ################  The main  function for name matching
@@ -939,6 +942,16 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(length(which_temp)>0) res <- res[-which_temp,]
   rm(which_temp)
 
+  ## selecting the first 'BEST' matching result(s)
+  if(matchFirst==TRUE){
+    print("NOTE: Only the first 'BEST' matching result(s) included (Name_set equals to one).")
+    res <- res[which(res$Name_set==1),]
+  }
+
+  if(matchFirst==FALSE){
+    print("NOTE: All matching results are included. If you want to use the first 'BEST' matching result(s) only, you can select the results of the column 'Name_set' equals to one.")  
+  }
+  
   ## return the result
   return(res)
 }
