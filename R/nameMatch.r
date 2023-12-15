@@ -259,19 +259,19 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   }
 
   ## correct the column "Rank" if it exists
-  if("RANK"%in%colnames(spSource)){
-    if(!exists("splitName_spSource")) splitName_spSource <- strsplit(spSource$NAMECLEAN, " ")
-    rank_temp <- unlist(lapply(splitName_spSource, length))
-    spSource$RANK[which(spSource$RANK!=rank_temp)] <- rank_temp[which(spSource$RANK!=rank_temp)]
-    rm(rank_temp)
-  }
-
-  if("RANK"%in%colnames(spList)){
-    if(!exists("splitName_spList")) splitName_spList <- strsplit(spList$NAMECLEAN, " ")
-    rank_temp <- unlist(lapply(splitName_spList, length))
-    spList$RANK[which(spList$RANK!=rank_temp)] <- rank_temp[which(spList$RANK!=rank_temp)]
-    rm(rank_temp)
-  }
+  # if("RANK"%in%colnames(spSource)){
+  #   if(!exists("splitName_spSource")) splitName_spSource <- strsplit(spSource$NAMECLEAN, " ")
+  #   rank_temp <- unlist(lapply(splitName_spSource, length))
+  #   spSource$RANK[which(spSource$RANK!=rank_temp)] <- rank_temp[which(spSource$RANK!=rank_temp)]
+  #   rm(rank_temp)
+  # }
+  # 
+  # if("RANK"%in%colnames(spList)){
+  #   if(!exists("splitName_spList")) splitName_spList <- strsplit(spList$NAMECLEAN, " ")
+  #   rank_temp <- unlist(lapply(splitName_spList, length))
+  #   spList$RANK[which(spList$RANK!=rank_temp)] <- rank_temp[which(spList$RANK!=rank_temp)]
+  #   rm(rank_temp)
+  # }
 
   ## some minor corrections in the column "ACCEPTED_ID"
   if(!"ACCEPTED_ID"%in%colnames(spSource)) spSource$ACCEPTED_ID <- NA
@@ -341,6 +341,9 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   ##------------------------------------------------
   ##------------------------------------------------
   # If RANK==1, to match with the genus or family directly
+  which00 <- which(spList$RANK==1)
+  if(length(which00)>0) spList$NAMECLEAN[which00] <- spList$GENUS[which00]
+  rm(which00)
   # --- Genus
   which00 <- which(spList$NAMECLEAN%in%c(spSource$GENUS))
   if(length(which00)>0){
@@ -349,9 +352,9 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
                         Submitted_Author=spList$AUTHOR[which00],
                         Submitted_Genus=spList$GENUS[which00],
                         Submitted_Rank=1,
-                        Name_in_database=spList$NAMECLEAN[which00],
+                        Name_in_database=spList$GENUS[which00],
                         Author_in_database=NA,
-                        Genus_in_database=spList$NAMECLEAN[which00],
+                        Genus_in_database=spList$GENUS[which00],
                         Rank_in_database=1,
                         ID_in_database=NA,
                         Fuzzy=NA,
@@ -373,14 +376,14 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   
 
   # --- Family
-  which00 <- which(spList$NAMECLEAN%in%c(spSource$FAMILY))
+  which00 <- which(spList$GENUS%in%c(spSource$FAMILY))
   if(length(which00)>0){
      res00 <- data.frame(SORTER=spList$SORTER[which00],
                          Submitted_Name=spList$NAME[which00],
                          Submitted_Author=spList$AUTHOR[which00],
                          Submitted_Genus=NA,
                          Submitted_Rank=1,
-                         Name_in_database=spList$NAMECLEAN[which00],
+                         Name_in_database=spList$GENUS[which00],
                          Author_in_database=NA,
                          Genus_in_database=NA,
                          Rank_in_database=1,
@@ -389,7 +392,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
                          NOTE="Matching only family level",
                          Name_spLev=NA,
                          ACCEPTED_ID=NA,
-                         FAMILY=spList$NAMECLEAN[which00])
+                         FAMILY=spList$GENUS[which00])
   }
   rm(which00)
   if(exists("res00") & exists("res01")) res01 <- rbind(res00, res01)
