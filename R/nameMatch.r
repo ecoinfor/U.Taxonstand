@@ -101,6 +101,20 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   ## to standize the colunm names. For example, change "name" to "Name", "sorter" to "Sorter"
   colnames(spList) <- toupper(colnames(spList))
   colnames(spSource) <- toupper(colnames(spSource))
+
+  ## if the data is a data frame, but missing the column AUTHOR or RANK in the data file
+  if(is.data.frame(spList) & !"AUTHOR"%in%colnames(spList)){
+    sp0 <- nameSplit(splist=spList$NAME)
+    spList$AUTHOR <- sp0$Author
+    spList$NAME <- sp0$Name
+    rm(sp0)
+  }
+  
+  if(is.data.frame(spList) & !"RANK"%in%colnames(spList)){
+    sp0 <- nameSplit(splist=spList$NAME)
+    spList$RANK <- sp0$Rank
+    rm(sp0)
+  }
   
   ## add the column "SORTER" if missing
   if(!"SORTER"%in%colnames(spList)) spList$SORTER <- 1:nrow(spList)
