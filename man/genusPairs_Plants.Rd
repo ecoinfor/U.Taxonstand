@@ -5,7 +5,7 @@
 \alias{genusPairs_Plants}
 \title{An example data of the genus pairs of plants with different spellings}
 \format{
-A data frame with 3 variables: \itemize{
+A data frame with 2 variables: \itemize{
    \item{\emph{Genus01}}{: The genus name with high possibility to misspell as the name of the same row in the column Genus02.}
    \item{\emph{Genus02}}{: The genus name with high possibility to misspell as the name of the same row in the column Genus01.}
 }

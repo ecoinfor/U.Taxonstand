@@ -63,6 +63,12 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 ## Selected Publications Citing `U.Taxonstand`
 
+- Qian, H., Qian, S., Zhang, J., & Kessler, M. (2024). Effects of climate and environmental heterogeneity on the phylogenetic structure of regional angiosperm floras worldwide. Nature Communications, 15(1), 1079.
+
+- Luo, A., Li, Y., Shrestha, N., Xu, X., Su, X., Li, Y., ... & Wang, Z. (2024). Global multifaceted biodiversity patterns, centers, and conservation needs in angiosperms. Science China Life Sciences, 1-12.
+
+- Ye, Y., Fu, Q., Volis, S., Li, Z., Sun, H., & Deng, T. (2024). Evolutionary correlates of extinction risk in Chinese angiosperm. Biological Conservation, 292, 110549.
+
 - Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). The big four of plant taxonomy – a comparison of global checklists of vascular plant names. New Phytologist. https://doi.org/10.1111/nph.18961
 
 - Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2023). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, e12990. https://doi.org/10.1111/conl.12990

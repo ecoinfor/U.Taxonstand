@@ -2,7 +2,7 @@
 #'
 #' A data frame with 355 rows and 2 variables. The file with the information of genus variants is optional to U.Taxonstand, but the rate of matching success may increase when such information is provided.
 #'
-#' @format A data frame with 3 variables: \itemize{
+#' @format A data frame with 2 variables: \itemize{
 #'    \item{\emph{Genus01}}{: The genus name with high possibility to misspell as the name of the same row in the column Genus02.}
 #'    \item{\emph{Genus02}}{: The genus name with high possibility to misspell as the name of the same row in the column Genus01.}
 #' }

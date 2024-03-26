@@ -1,7 +1,7 @@
 Package: U.Taxonstand
 Type: Package
 Title: Taxonomic Standardization of Scientific Names of Plants and Animals
-Version: 1.2.4
+Version: 1.2.5
 Authors@R: c(person("Jian","Zhang",,"jzhang1982@gmail.com",role=c("aut","cre")),
              person("Hong","Qian",,"hong.qian@illinoisstatemuseum.org",role=c("aut")))
 Maintainer: Jian Zhang <jzhang1982@gmail.com>
@@ -15,5 +15,5 @@ Remotes:
 License: GPL-2
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 LazyData: false
