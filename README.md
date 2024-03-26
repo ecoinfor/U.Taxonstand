@@ -65,9 +65,9 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 - Qian, H., Qian, S., Zhang, J., & Kessler, M. (2024). Effects of climate and environmental heterogeneity on the phylogenetic structure of regional angiosperm floras worldwide. Nature Communications, 15(1), 1079. https://doi.org/10.1038/s41467-024-45155-9
 
-- Luo, A., Li, Y., Shrestha, N., Xu, X., Su, X., Li, Y., ... & Wang, Z. (2024). Global multifaceted biodiversity patterns, centers, and conservation needs in angiosperms. Science China Life Sciences, 1-12.https://doi.org/10.1007/s11427-023-2430-2
+- Luo, A., Li, Y., Shrestha, N., Xu, X., Su, X., Li, Y., ... & Wang, Z. (2024). Global multifaceted biodiversity patterns, centers, and conservation needs in angiosperms. Science China Life Sciences, 1-12. https://doi.org/10.1007/s11427-023-2430-2
 
-- Ye, Y., Fu, Q., Volis, S., Li, Z., Sun, H., & Deng, T. (2024). Evolutionary correlates of extinction risk in Chinese angiosperm. Biological Conservation, 292, 110549.https://doi.org/10.1016/j.biocon.2024.110549
+- Ye, Y., Fu, Q., Volis, S., Li, Z., Sun, H., & Deng, T. (2024). Evolutionary correlates of extinction risk in Chinese angiosperm. Biological Conservation, 292, 110549. https://doi.org/10.1016/j.biocon.2024.110549
 
 - Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). The big four of plant taxonomy – a comparison of global checklists of vascular plant names. New Phytologist. https://doi.org/10.1111/nph.18961
 
