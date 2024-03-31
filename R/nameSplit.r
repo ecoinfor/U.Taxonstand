@@ -72,20 +72,20 @@ nameSplit <- function(splist){
         
         # if whichs is the last word of spname (e.g., "Veratrum dahuricum (Turcz.) Loes. F."), remove it
         if(length(whichs)>0){
-          if(length(whichs)==1 & whichs==length(spparts)) whichs <- c()          
+          if(length(whichs)==1 && whichs==length(spparts)) whichs <- c()          
         }
           
         if(length(whichs)>0){
           if(whichs[1]!=1){
             Author <- paste(spparts[-c(1:(max(whichs)+1))], collapse=" ")
             species <- paste(spparts[c(1:(max(whichs)+1))], collapse=" ")
-            if(length(whichs)==1 & "X"%in%spparts[whichs]) Rank <- 2
-            if(length(whichs)==1 & !"X"%in%spparts[whichs]) Rank <- 3
-            if(length(whichs)>1 & "X"%in%spparts[whichs]){
+            if(length(whichs)==1 && "X"%in%spparts[whichs]) Rank <- 2
+            if(length(whichs)==1 && !"X"%in%spparts[whichs]) Rank <- 3
+            if(length(whichs)>1 && "X"%in%spparts[whichs]){
               if(length(which(spparts=="X"))==1) Rank <- length(whichs)+1
               if(length(which(spparts=="X"))>1) Rank <- length(whichs)
             }
-            if(length(whichs)>1 & !"X"%in%spparts[whichs]) Rank <- length(whichs)+2
+            if(length(whichs)>1 && !"X"%in%spparts[whichs]) Rank <- length(whichs)+2
           }
         }
         
@@ -107,13 +107,13 @@ nameSplit <- function(splist){
           if(length(whichsNew)>0){
               Author <- paste(spparts[-c(1:(max(whichsNew)+1))], collapse=" ")
               species <- paste(spparts[c(1:(max(whichsNew)+1))], collapse=" ")
-              if(length(whichsNew)==1 & "X"%in%spparts[whichsNew]) Rank <- 2
-              if(length(whichsNew)==1 & !"X"%in%spparts[whichsNew]) Rank <- 3
-              if(length(whichsNew)>1 & "X"%in%spparts[whichsNew]){
+              if(length(whichsNew)==1 && "X"%in%spparts[whichsNew]) Rank <- 2
+              if(length(whichsNew)==1 && !"X"%in%spparts[whichsNew]) Rank <- 3
+              if(length(whichsNew)>1 && "X"%in%spparts[whichsNew]){
                 if(length(which(spparts=="X"))==1) Rank <- length(whichsNew)+1
                 if(length(which(spparts=="X"))>1) Rank <- length(whichsNew)
               }
-              if(length(whichsNew)>1 & !"X"%in%spparts[whichsNew]) Rank <- length(whichsNew)+2
+              if(length(whichsNew)>1 && !"X"%in%spparts[whichsNew]) Rank <- length(whichsNew)+2
             }
             if(length(whichsNew)==0){
               Author <- paste(spparts[-c(1:3)], collapse=" ")

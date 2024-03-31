@@ -18,7 +18,7 @@ familyMatch(
 \item{taxon}{Select one specific taxon group to match. Currently, 'plant','fern','bird','mammal','amphibian','fish'.}
 }
 \value{
-A data frame with three columns: "sorter", "genus" and "family".
+A data frame with three or four columns: "sorter", "sp", "genus" and "family".
 }
 \description{
 This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}.
