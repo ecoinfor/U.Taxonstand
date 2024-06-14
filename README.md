@@ -63,11 +63,20 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 ## Selected Publications Citing `U.Taxonstand`
 
+- Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2024). What is the value of biotic seed dispersal in post‐fire forest regeneration?. Conservation Letters, 17(1), e12990. https://doi.org/10.1111/conl.12990
+
+- Cruz‐Tejada, D. M., Fernández‐Pascual, E., Mo, A., Mattana, E., & Carta, A. (2024). MedGermDB: A seed germination database for characteristic species of Mediterranean habitats. Applied Vegetation Science, 27(2), e12771. https://doi.org/10.1111/avsc.12771
+
+- Wu, L. M., Chen, S. C., Quan, R. C., & Wang, B. (2024). Disentangling the relative contributions of factors determining seed physical defence: A global‐scale data synthesis. Functional Ecology, 38(5): 1146-1155. https://doi.org/10.1111/1365-2435.14552
+
+- Wang, X., Chen, L., Zhang, H., Liu, P., Shang, X., Wang, F., ... & Zhang, J. (2024). Insect herbivory on woody broadleaf seedlings along a subtropical elevational gradient supports the resource concentration hypothesis. American Journal of Botany, e16355. https://doi.org/10.1002/ajb2.16355
+
 - Qian, H., Qian, S., Zhang, J., & Kessler, M. (2024). Effects of climate and environmental heterogeneity on the phylogenetic structure of regional angiosperm floras worldwide. Nature Communications, 15(1), 1079. https://doi.org/10.1038/s41467-024-45155-9
 
 - Luo, A., Li, Y., Shrestha, N., Xu, X., Su, X., Li, Y., ... & Wang, Z. (2024). Global multifaceted biodiversity patterns, centers, and conservation needs in angiosperms. Science China Life Sciences, 1-12. https://doi.org/10.1007/s11427-023-2430-2
 
 - Ye, Y., Fu, Q., Volis, S., Li, Z., Sun, H., & Deng, T. (2024). Evolutionary correlates of extinction risk in Chinese angiosperm. Biological Conservation, 292, 110549. https://doi.org/10.1016/j.biocon.2024.110549
+
 
 - Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). The big four of plant taxonomy – a comparison of global checklists of vascular plant names. New Phytologist. https://doi.org/10.1111/nph.18961
 

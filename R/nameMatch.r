@@ -969,6 +969,13 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     print("NOTE: All matching results are included. If you want to use the first 'BEST' matching result(s) only, you can select the results of the column 'Name_set' equals to one.")  
   }
   
+  ## If submitted_rank >5, keep the matching results as blank
+  whichs <- which(res$Submitted_Rank>5)
+  if(length(whichs)>0){
+    res[whichs,6:ncol(res)] <- NA
+    res$NOTE[whichs] <- "No matching result"
+  }
+  
   ## return the result
   return(res)
 }
