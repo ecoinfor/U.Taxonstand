@@ -77,7 +77,6 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 - Ye, Y., Fu, Q., Volis, S., Li, Z., Sun, H., & Deng, T. (2024). Evolutionary correlates of extinction risk in Chinese angiosperm. Biological Conservation, 292, 110549. https://doi.org/10.1016/j.biocon.2024.110549
 
-
 - Schellenberger Costa, D., Boehnisch, G., Freiberg, M., Govaerts, R., Grenié, M., Hassler, M., ... & Wirth, C. (2023). The big four of plant taxonomy – a comparison of global checklists of vascular plant names. New Phytologist. https://doi.org/10.1111/nph.18961
 
 - Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2023). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, e12990. https://doi.org/10.1111/conl.12990
