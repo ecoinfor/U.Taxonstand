@@ -58,7 +58,8 @@ nameSplit <- function(splist){
     rm(whichs,j)
 
     ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
-    epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.")
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "form.", "forma", "forma.", "x", "X", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothossp.", "nothosubsp.", "nothosubsp", "nothovar", "nothovar.", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.","convar.", "convar", "microgene", "microgene.", "psp.", "provar.", "provar", "modif", "modif.", "microf.", "microf", "stirps", "stirps.", "mut.", "ecas.","agamosp.", "agamosp")
+  
     end_temp <- endsWith(sp, paste(" ", epithets, sep=""))
     which_temp <- which(end_temp==TRUE)
     if(length(which_temp)>0) sp <- gsub(paste(" ", epithets[which_temp], sep=""), "", sp, ignore.case=TRUE)

@@ -1,12 +1,12 @@
 #'Format the taxon names of the database into the required format
 #'
-#' This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X ", " x ", "×" and more, and a new column "GENUS" is missing.
+#' This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X ", " x ", "×" and more, a new column "GENUS" if missing, and a new column "RANK" if missing.
 #' #'
 #' @param dataSource A data frame with at least one column of the Latin name.
 #'
 #' @param author Logical. Will change "fil." to "f." and change "Linn." to "L.".
 #'
-#' @return A data frame with a new column "NameClean" and a new column "GENUS" if the column "GENUS" is missing in the datasource.
+#' @return A data frame with a new column "NameClean", a new column "GENUS" if missing in the datasource, and a new column "RANK" if missing in the datasource.
 #'
 #'@author Jian Zhang & Hong Qian
 #'
@@ -30,7 +30,8 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   colnames(dataSource) <- toupper(colnames(dataSource))
   
   ##-------------- preparing the datasets
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","aff.","cf.","af.","cff.")
+#  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","aff.","cf.","af.","cff.")
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "form.", "forma", "forma.", "x", "X", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothossp.", "nothosubsp.", "nothosubsp", "nothovar", "nothovar.", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.","convar.", "convar", "microgene", "microgene.", "psp.", "provar.", "provar", "modif", "modif.", "microf.", "microf", "stirps", "stirps.", "mut.", "ecas.","agamosp.", "agamosp")
   
   dataSource$NameClean <- dataSource$NAME
   dataSource$NameClean <- gsub(paste0("\\s+|", intToUtf8(160)), " ", as.character(dataSource$NameClean))
@@ -84,14 +85,18 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   dataSource$NameClean <- trimws(dataSource$NameClean)
 
   ## If ending with one of epithets (e.g., "Pinus sp.", "Pinus sp"), remove the epithet
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "\u00d7", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.")
-  for(i in 1:length(dataSource$NameClean)){
+for(i in 1:length(dataSource$NameClean)){
     end_temp <- endsWith(dataSource$NameClean[i], paste(" ", epithets, sep=""))
     which_temp <- which(end_temp==TRUE)
     if(length(which_temp)>0) dataSource$NameClean[i] <- gsub(paste(" ", epithets[which_temp], sep=""), "", dataSource$NameClean[i], ignore.case=TRUE)
   rm(end_temp, which_temp)
   }
   rm(epithets)
+  
+  ## Add a new column RANK if missing
+  if(!"RANK"%in%colnames(dataSource)){  
+    dataSource$RANK <- lengths(strsplit(dataSource$NameClean, ' '))
+  }
   
   #  the final result
   return(dataSource)
