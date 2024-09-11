@@ -1,6 +1,8 @@
 # U.Taxonstand
 
-`U.Taxonstand` is an R Package for Standardizing and Harmonizing Scientific Names of Plants and Animals. This package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted. 
+`U.Taxonstand` is an R Package for Standardizing and Harmonizing Scientific Names of Plants and Animals. This package can standardize and harmonize scientific names in plant and animal species lists at a fast execution speed and at a high rate of matching success. It works with all taxonomic databases, as long as they are properly formatted.
+
+NOTE: An online version of U.Taxonstand is now available: https://ecoinfor.shinyapps.io/UTaxonstandOnline. Only some basic functions are included in the web application.
 
 ## Installation
 
@@ -43,11 +45,15 @@ head(res)
 #------------------ The R package also works for other taxomic groups. The below is an exmaple for birds
 # load the formatted ITIS Aves database; the formatted database can be downloaded here:
 # https://github.com/nameMatch/Database
-require(openxlsx)
-databaseAves <- read.xlsx("Birds_ITIS_database.xlsx")
+#--- load the xlsx datafile
+# require(openxlsx)
+# database <- read.xlsx("Birds_ITIS_database.xlsx")
+
+#--- load the rdata file
+load("Birds.rdadta")
 
 spAves <- c("Hieraaetus fasciata","Merops leschenaultia","Egretta sacra","Sturnia philippensis","Phoenicurus caeruleocephala","Enicurus maculates","Orthotomus cucullatus","Phalacrocorax carbo")
-nameMatch(spList=spAves,spSource=databaseAves, author = FALSE, max.distance= 1)
+nameMatch(spList=spAves,spSource=database, author = FALSE, max.distance= 1)
 
 #------------------ You can use the function "nameSplit" to format your species name list
 sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.","Eupatorium betoniciforme f. alternifolium Hicken","Turczaninowia fastigiata (Fisch.) DC.","Zizyphora abd-el-asisii Hand.-Mazz.","Baccharis X paulopolitana I.L.Teodoro & W.Hoehne","Accipiter albogularis woodfordi (Sharpe, 1888)")

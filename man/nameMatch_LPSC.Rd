@@ -52,7 +52,7 @@ A data frame with the following columns: \itemize{
 }
 }
 \description{
-Replacing synonyms by accepted names and removing orthographical errors in the raw names. This function is used to match with the Checklist of Plant Species in China (version 2023). The function was developed based on three databases of the R package LPSC.
+Replacing synonyms by accepted names and removing orthographical errors in the raw names. This function is used to match with the Checklist of Plant Species in China (version 2023). The function was developed based on three databases of the R package LPSC. NOTE: The new data version (2024) is publicly available now: https://www.plantplus.cn/doi/10.12282/plantdata.1476
 }
 \examples{
 
