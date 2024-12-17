@@ -1,7 +1,7 @@
 #'Format the taxon names of the database into the required format
 #'
 #' This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X ", " x ", "×" and more, a new column "GENUS" if missing, and a new column "RANK" if missing.
-#' #'
+#' 
 #' @param dataSource A data frame with at least one column of the Latin name.
 #'
 #' @param author Logical. Will change "fil." to "f." and change "Linn." to "L.".

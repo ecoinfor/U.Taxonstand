@@ -16,7 +16,6 @@ A data frame with a new column "NameClean", a new column "GENUS" if missing in t
 }
 \description{
 This function is used to format the input taxon names before running the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}}. The function will add a new column "NameClean" by removing some epithets such as "var.", "f.", "X ", " x ", "×" and more, a new column "GENUS" if missing, and a new column "RANK" if missing.
-#'
 }
 \examples{
 data(databaseExample)
