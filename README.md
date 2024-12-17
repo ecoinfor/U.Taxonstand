@@ -58,6 +58,20 @@ nameMatch(spList=spAves,spSource=database, author = FALSE, max.distance= 1)
 #------------------ You can use the function "nameSplit" to format your species name list
 sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.","Eupatorium betoniciforme f. alternifolium Hicken","Turczaninowia fastigiata (Fisch.) DC.","Zizyphora abd-el-asisii Hand.-Mazz.","Baccharis X paulopolitana I.L.Teodoro & W.Hoehne","Accipiter albogularis woodfordi (Sharpe, 1888)")
 (splist <- nameSplit(splist=sps))
+
+#------------------ You can use the function "synSearch" to find all the synonyms and accepted names.
+data(databaseExample)
+synSearch(splist="Isoetes tenella", spSource=databaseExample)
+synSearch(splist=c("Isoetes tenella","Isoetes echinospora","Isoetes underwoodii L.F. Hend. Isoetes"), spSource=databaseExample)
+
+#------------------ You can use the function "familyMatch" to find all the accepted family names for taxon names.
+# genus names
+familyMatch(genuslist=c("Aa","Pinus","Humbertodendron"), taxon="plant")
+familyMatch(genuslist = c("Acanthocharax","Agosia","Alticorpus"),taxon="fish")
+
+# species names
+familyMatch(splist=c("Aa xyz","Pinus xyz","Humbertodendron xyz"), taxon="plant")
+familyMatch(splist = c("Acanthocharax xyz","Agosia xyz","Alticorpus xyz"),taxon="fish")
 ```
 
 ## Citing This Package
@@ -66,8 +80,9 @@ If you use this package, please cite it.
 
 Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, 45(1): 1-5. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
 
+Zhang, J., Qian, H., Wang, X. (2024). An online version and some updates of R package U.Taxonstand for standardizing scientific names in plant and animal species. Plant Diversity, DOI: [10.1016/j.pld.2024.09.005](https://doi.org/10.1016/j.pld.2024.09.005)
 
-## Selected Publications Citing `U.Taxonstand`
+## Selected Publications Citing `U.Taxonstand` or `U.Taxonstand Online`
 
 - Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2024). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, 17(1), e12990. https://doi.org/10.1111/conl.12990
 
