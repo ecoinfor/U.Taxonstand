@@ -15,7 +15,7 @@ synSearch(splist, spSource)
 A data frame with the columns of all synonyms and accepted names.
 }
 \description{
-NOTE: This function only works for the matched taxon names. Otherwise, you shoudl use the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}} to do the matching first.
+NOTE that this function only works for the matched taxon names. Otherwise, you should use the function \code{\link[U.Taxonstand:nameMatch]{nameMatch}} to do the matching first.
 }
 \examples{
 data(databaseExample)
