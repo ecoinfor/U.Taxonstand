@@ -37,6 +37,7 @@ nameSplit <- function(splist){
     sp <- gsub(paste(paste(" ", c("ssp","subsp.","subsp", "sp", "sp.")," ",sep=""), collapse="|"), " ssp. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("cv","cultivar.","cultivar")," ",sep=""), collapse="|"), " cv. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("nothossp","nothosubsp.","nothosubsp")," ",sep=""), collapse="|"), " nothossp. ", sp, ignore.case=TRUE)
+    sp <- gsub(paste(paste(" ", c("nothovar.","nothovar")," ",sep=""), collapse="|"), " nothovar. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("prol","proles.","proles")," ",sep=""), collapse="|"), " prol. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("grex.", "grex")," ",sep=""), collapse="|"), " grex. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("gama.", "gama")," ",sep=""), collapse="|"), " gama. ", sp, ignore.case=TRUE)
