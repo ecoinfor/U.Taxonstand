@@ -37,6 +37,7 @@ nameClean <- function(dataSource=NULL, author=TRUE){
   dataSource$NameClean <- gsub(paste0("\\s+|", intToUtf8(160)), " ", as.character(dataSource$NameClean))
   dataSource$NameClean <- gsub("(?! )\\(", " \\(", dataSource$NameClean, perl = TRUE)
   dataSource$NameClean <- gsub("-", "", dataSource$NameClean, ignore.case=TRUE)
+  dataSource$NameClean <- gsub("_", " ", dataSource$NameClean, ignore.case=TRUE)
   dataSource$NameClean <- gsub("\\+ ", "", dataSource$NameClean, ignore.case=TRUE)
   dataSource$NameClean <- gsub("\\+", "", dataSource$NameClean, ignore.case=TRUE)
   dataSource$NameClean <- gsub("  ", " ", dataSource$NameClean, ignore.case=TRUE)

@@ -31,6 +31,7 @@ nameSplit <- function(splist){
     sp <- gsub(paste(paste(" ", c("v.")," ",sep=""), collapse="|"), " var. ", sp, ignore.case=TRUE)
     sp <- gsub(paste(paste(" ", c("f","fo","fo.","form","form.","forma","forma.")," ",sep=""), collapse="|"), " f. ", sp, ignore.case=TRUE)
     sp <- gsub(" x ", " X ", sp, ignore.case=TRUE)
+    sp <- gsub("_", " ", sp, ignore.case=TRUE)
     sp <- gsub(" \u00d7 ", " X ", sp, ignore.case=TRUE)
     sp <- gsub("\\+ ", "", sp, ignore.case=TRUE)
     sp <- gsub("\\+", "", sp, ignore.case=TRUE)
