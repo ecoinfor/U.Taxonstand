@@ -135,7 +135,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   }
   
   ##------------	
-  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "nothovar.", "nothovar", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","sp.","sp","aff.","cf.","af.","cff.", "v.")
+  epithets <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.", "X", "\u00d7", "subprol.","cv.", "-", "var", "f", "fo", "fo.", "form", "forma", "forma.", "x", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothosubsp.", "nothosubsp", "nothovar.", "nothovar", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles","sp.","sp","aff.","cf.","af.","cff.", "v.","microgène","microgene","micromorphe","group","subspecioid","sublusus")
 
   ##------------
   print("Loading and processing the database...")
@@ -823,7 +823,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   ##------- add the accepted species-level names into the new column "Accepted_SPNAME"
   res$Accepted_SPNAME <- NA
   
-  epithets2 <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "form.", "forma", "forma.", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothossp.", "nothosubsp.", "nothosubsp", "nothovar", "nothovar.", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.","convar.", "convar", "microgene", "microgene.", "psp.", "provar.", "provar", "modif", "modif.", "microf.", "microf", "stirps", "stirps.", "mut.", "ecas.","agamosp.", "agamosp") ## keep these epithets: "\u00d7", x", "×" and "X"
+  epithets2 <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "form.", "forma", "forma.", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothossp.", "nothosubsp.", "nothosubsp", "nothovar", "nothovar.", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.","convar.", "convar", "microgene", "microgene.", "psp.", "provar.", "provar", "modif", "modif.", "microf.", "microf", "stirps", "stirps.", "mut.", "ecas.","agamosp.", "agamosp","microgène","microgene","micromorphe","group","subspecioid","sublusus") ## keep these epithets: "\u00d7", x", "×" and "X"
   
   spMerge <- res$Name_in_database
   spMerge[!is.na(res$New_name)] <- res$New_name[!is.na(res$New_name)]
