@@ -80,9 +80,21 @@ If you use this package, please cite it.
 
 Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, 45(1): 1-5. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
 
-Zhang, J., Qian, H., Wang, X. (2024). An online version and some updates of R package U.Taxonstand for standardizing scientific names in plant and animal species. Plant Diversity, DOI: [10.1016/j.pld.2024.09.005](https://doi.org/10.1016/j.pld.2024.09.005)
+Zhang, J., Qian, H., Wang, X. (2025). An online version and some updates of R package U.Taxonstand for standardizing scientific names in plant and animal species. Plant Diversity, 47(1): 166-168. DOI: [10.1016/j.pld.2024.09.005](https://doi.org/10.1016/j.pld.2024.09.005)
 
 ## Selected Publications Citing `U.Taxonstand` or `U.Taxonstand Online`
+
+- Matos, I.S., Vu, B., Mann, J., Dexter, K., Fricker, M. (2025). Leaf venation network evolution across clades and scales. Nature Plants. https://doi.org/10.1038/s41477-025-02011-y
+
+- Wu, Z., Zohner, C. M., Zhou, Y., Crowther, T. W., Wang, H., Wang, Y., ... & Fu, Y. H. (2025). Tree species composition governs urban phenological responses to warming. Nature Communications, 16(1), 3696.
+
+- Czyżewski, S., & Svenning, J. C. (2025). Temperate forest plants are associated with heterogeneous semi-open canopy conditions shaped by large herbivores. Nature Plants, 1-16.
+
+- Kopper, C., Schönenberger, J., & Dellinger, A. S. (2025). Mountain colonization precedes shifts away from bee pollination in Melastomataceae. New Phytologist.
+
+- Carta, A., Mattana, E., Ensslin, A., Godefroid, S., & Molina‐Venegas, R. (2025). Plant evolutionary history is largely underrepresented in European seed banks. New Phytologist.
+
+- Zhang, Z., Wang, F., Wang, X., Sun, M., Zheng, P., Zhao, J., ... & Zhang, J. (2025). Biogeographic affinity partly shapes woody plant diversity along an elevational gradient in subtropical forests. Plant Diversity. https://doi.org/10.1016/j.pld.2025.06.004
 
 - Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2024). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, 17(1), e12990. https://doi.org/10.1111/conl.12990
 
