@@ -82,7 +82,7 @@ Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scient
 
 Zhang, J., Qian, H., Wang, X. (2025). An online version and some updates of R package U.Taxonstand for standardizing scientific names in plant and animal species. Plant Diversity, 47(1): 166-168. DOI: [10.1016/j.pld.2024.09.005](https://doi.org/10.1016/j.pld.2024.09.005)
 
-## Selected Publications Citing `U.Taxonstand` or `U.Taxonstand Online`
+## Selected Publications Citing `U.Taxonstand` and/or `U.Taxonstand Online`
 
 - Matos, I.S., Vu, B., Mann, J., Dexter, K., Fricker, M. (2025). Leaf venation network evolution across clades and scales. Nature Plants. https://doi.org/10.1038/s41477-025-02011-y
 
