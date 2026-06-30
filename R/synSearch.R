@@ -13,7 +13,8 @@
 #'@examples
 #'data(databaseExample)
 #'synSearch(splist="Isoetes tenella", spSource=databaseExample)
-#'synSearch(splist=c("Isoetes tenella","Isoetes echinospora","Isoetes underwoodii L.F. Hend. Isoetes"), spSource=databaseExample)
+#'synSearch(splist=c("Isoetes tenella","Isoetes echinospora",
+#'    "Isoetes underwoodii L.F. Hend. Isoetes"), spSource=databaseExample)
 #'
 #'@export
 synSearch <- function(splist, spSource){

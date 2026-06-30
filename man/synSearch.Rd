@@ -20,7 +20,8 @@ NOTE that this function only works for the matched taxon names. Otherwise, you s
 \examples{
 data(databaseExample)
 synSearch(splist="Isoetes tenella", spSource=databaseExample)
-synSearch(splist=c("Isoetes tenella","Isoetes echinospora","Isoetes underwoodii L.F. Hend. Isoetes"), spSource=databaseExample)
+synSearch(splist=c("Isoetes tenella","Isoetes echinospora",
+   "Isoetes underwoodii L.F. Hend. Isoetes"), spSource=databaseExample)
 
 }
 \author{
