@@ -84,6 +84,10 @@ Zhang, J., Qian, H., Wang, X. (2025). An online version and some updates of R pa
 
 ## Selected Publications Citing `U.Taxonstand` and/or `U.Taxonstand Online`
 
+- Jiménez-López, D. A., Ramírez-Barahona, S., Zizka, A., Kessler, M., Jiménez-Alfaro, B., Maza-Villalobos, S., ... & Ramírez-Marcial, N. (2026). A global bioregionalisation for orchids. The New Phytologist. https://doi.org/10.1111/nph.71093
+
+- Sheppard, C. S., Brian, J. I., Dawson, W., Dostál, P., Essl, F., Gruntman, M., ... & Golivets, M. (2026). Dynamics of biotic resistance to plant invasions. Biological Reviews. https://doi.org/10.1002/brv.70190
+
 - Matos, I.S., Vu, B., Mann, J., Dexter, K., Fricker, M. (2025). Leaf venation network evolution across clades and scales. Nature Plants. https://doi.org/10.1038/s41477-025-02011-y
 
 - Wu, Z., Zohner, C. M., Zhou, Y., Crowther, T. W., Wang, H., Wang, Y., ... & Fu, Y. H. (2025). Tree species composition governs urban phenological responses to warming. Nature Communications, 16(1), 3696.
