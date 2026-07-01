@@ -34,7 +34,6 @@
 #'    \item{\emph{New_ID}}{: ID of the name in the column New_name based on the database.}
 #'    \item{\emph{Family}}{: Family name, extracted from the spSource.}
 #'    \item{\emph{Name_spLev}}{: If the input taxon name cannot be matched at the same rank level, the species-level matching name shows here.}
-#'    \item{\emph{Accepted_SPNAME}}{: If the name in the column “Submitted_Name” is matched with a name in the database, either as an accepted name or a synonym, the species name of the accepted name of the matched name will be listed here.}
 #'    \item{\emph{NOTE}}{: This column contains some notes, e.g. no matching or multiple matching results for a given name, or only matching at species level for a trinomial name.}
 #'}
 #'

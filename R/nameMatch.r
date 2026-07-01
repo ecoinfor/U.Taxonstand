@@ -36,7 +36,6 @@
 #'    \item{\emph{New_ID}}{: ID of the name in the column New_name based on the database.}
 #'    \item{\emph{Family}}{: Family name, extracted from the spSource.}
 #'    \item{\emph{Name_spLev}}{: If the input taxon name cannot be matched at the same rank level, the species-level matching name shows here.}
-#'    \item{\emph{Accepted_SPNAME}}{: If the name in the column “Submitted_Name” is matched with a name in the database, either as an accepted name or a synonym, the species name of the accepted name of the matched name will be listed here.}
 #'    \item{\emph{NOTE}}{: This column contains some notes, e.g. no matching or multiple matching results for a given name, or only matching at species level for a trinomial name.}
 #'}
 #'
@@ -822,23 +821,6 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   if(length(whichs)>0) res <- res[-whichs,]
   rm(whichs)
   
-  ##------- add the accepted species-level names into the new column "Accepted_SPNAME"
-  res$Accepted_SPNAME <- NA
-  
-  epithets2 <- c("var.","f.","ssp.","grex","nothossp.","prol.","gama","lus.","monstr.","race","nm","subvar.","subf.","subprol.","cv.","var", "f", "fo", "fo.", "form", "form.", "forma", "forma.", "ssp", "subsp.", "subsp", "cv", "cultivar.", "cultivar", "nothossp", "nothossp.", "nothosubsp.", "nothosubsp", "nothovar", "nothovar.", "nothof", "nothof.", "prol", "proles.", "proles", "grex.", "gama.", "lusus", "lusus.", "lus","monstr","race.","nm.","subvar","subf","subfo","subfo.","subform.","subform","subprol","subproles.","subproles", "sp.", "sp","aff.","cf.","af.","cff.","convar.", "convar", "microgene", "microgene.", "psp.", "provar.", "provar", "modif", "modif.", "microf.", "microf", "stirps", "stirps.", "mut.", "ecas.","agamosp.", "agamosp","microgène","microgene","micromorphe","group","subspecioid","sublusus","subap.","subsubsp.","subap","subsubsp") ## keep these epithets: "\u00d7", x", "×" and "X"
-  
-  spMerge <- res$Name_in_database
-  spMerge[!is.na(res$New_name)] <- res$New_name[!is.na(res$New_name)]
-  if(length(spMerge)==1) spMerge <- spMerge[!is.na(spMerge)]
-  if(length(spMerge)>0){
-    whichs <- which(!is.na(spMerge))
-    if(length(whichs)>0){
-      spMerge[whichs] <- paste(plyr::ldply(strsplit(spMerge[whichs], paste(paste(" ", epithets2," ",sep=""), collapse="|")), rbind)[,1])
-      res$Accepted_SPNAME[whichs] <- spMerge[whichs]
-    }
-  }
-  rm(spMerge)
-  
   ##------- Check if the family names have changed between the original genus and new genus
   genusRaw01 <- res$Genus_in_database
   genusRaw01[is.na(genusRaw01)] <- res$Submitted_Genus[is.na(genusRaw01)]
@@ -929,13 +911,12 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     res$name.dist[whichs] <- NA
     res$author.dist[whichs] <- NA
     res$New_ID[whichs] <- NA
-    res$Accepted_SPNAME[whichs] <- NA
     res$NOTE[whichs] <- "No matching result"  
   }
   rm(whichs)
   
   ## change the order of the column names, and sort the res by SORTER and Name_set
-  res <- res[,c("SORTER","Submitted_Name","Submitted_Author","Submitted_Genus","Submitted_Rank","Name_in_database","Author_in_database","Genus_in_database","Rank_in_database","ID_in_database","Name_set","Fuzzy","Score","name.dist","author.dist","New_name","New_author","New_ID","Family","Name_spLev","Accepted_SPNAME","NOTE")]
+  res <- res[,c("SORTER","Submitted_Name","Submitted_Author","Submitted_Genus","Submitted_Rank","Name_in_database","Author_in_database","Genus_in_database","Rank_in_database","ID_in_database","Name_set","Fuzzy","Score","name.dist","author.dist","New_name","New_author","New_ID","Family","Name_spLev","NOTE")]
   res <- res[!is.na(res$SORTER),]
   res <- unique(res)
   res <- res[order(res$Name_set,res$SORTER),]
