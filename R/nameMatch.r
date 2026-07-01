@@ -73,20 +73,22 @@
 #'# load the formatted ITIS Aves database; the formatted database can be downloaded here:
 #'# https://github.com/nameMatch/Database
 #'# require(openxlsx)
-#'# databaseAves <- read.xlsx("Birds_ITIS_database.xlsx")
+#'# database <- read.xlsx("Birds_ITIS_database.xlsx")
+#'# Or load the RData file directly
+#'# load("Birds.rdata")
 #'# nameMatch(spList=c("Hieraaetus fasciata","Merops leschenaultia","Egretta sacra",
 #'# "Sturnia philippensis","Phoenicurus caeruleocephala","Enicurus maculates",
 #'# "Orthotomus cucullatus","Phalacrocorax carbo"),
-#'# spSource=databaseAves, author = FALSE, max.distance= 1)
+#'# spSource=database, author = FALSE, max.distance= 1)
 #'
 #'## Adding other information in the database into the final result (Not run)
 #'# sps <- c("Syntoma comosum (L.) Dalla Torre & Sarnth.", "Turczaninowia fastigiata (Fisch.) DC.",
 #'# "Zizyphora abd-el-asisii Hand.-Mazz.")
-#'# nameMatch(spList=sps, spSource=China_Plants_SP2000_2022Edition, author = TRUE, max.distance= 1,
+#'# nameMatch(spList=sps, spSource=China_Plants_SP2000_2026Edition, author = TRUE, max.distance= 1,
 #'# genusPairs=genusPairs_Plants, Append=TRUE)
-#'# NOTE: The raw data "China_Plants_SP2000_2022Edition" can be downloaded here:
-#'# https://www.plantplus.cn/doi/10.12282/plantdata.0061;
-#'# the formatted database "Plants_SP2000_2022Edition_China" can be downloaded here:
+#'# NOTE: The raw data "China_Plants_SP2000_2026Edition" can be downloaded here:
+#'# http://www.sp2000.org.cn/;
+#'# the formatted database "Plants_SP2000_2026Edition_China" can be downloaded here:
 #'# https://github.com/nameMatch/Database
 #'
 #'@export
@@ -98,7 +100,7 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
   ################################################
   if(!is.data.frame(spList)) spList <- nameSplit(splist=spList)
   
-  ## to standize the colunm names. For example, change "name" to "Name", "sorter" to "Sorter"
+  ## to standize the colunm names. For example, change "name" to "NAME".
   colnames(spList) <- toupper(colnames(spList))
   colnames(spSource) <- toupper(colnames(spSource))
 
@@ -801,9 +803,9 @@ nameMatch <- function(spList=NULL, spSource=NULL, author = TRUE, max.distance= 1
     for(i in 1:length(ids)){
       which_i <- which(spSource$ID==ids[i])
       if(length(which_i)>0){
-        res$New_name[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]==""|spSource$ACCEPTED_ID[which_i]==0, spSource$NAME[which_i],"[Accepted name needs to be determined]")
-        res$New_author[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]==""|spSource$ACCEPTED_ID[which_i]==0, spSource$AUTHOR[which_i], NA)
-        res$FAMILY[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]==""|spSource$ACCEPTED_ID[which_i]==0, spSource$FAMILY[which_i], NA)
+        res$New_name[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]=="", spSource$NAME[which_i],"[Accepted name needs to be determined]")
+        res$New_author[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]=="", spSource$AUTHOR[which_i], NA)
+        res$FAMILY[which(res$ACCEPTED_ID==ids[i])] <- ifelse(is.na(spSource$ACCEPTED_ID[which_i])|spSource$ACCEPTED_ID[which_i]=="", spSource$FAMILY[which_i], NA)
       }
       rm(which_i)
     }

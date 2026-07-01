@@ -9,8 +9,9 @@ NOTE: An online version of U.Taxonstand is now available: https://ecoinfor.shiny
 This package can be installed in R as follows,
 
 ```r
-# github (requires `remotes` or `devtools`)
-devtools::install_github("ecoinfor/U.Taxonstand")
+# github (requires `pak`)
+pak::pkg_install("ecoinfor/U.Taxonstand")
+
 ```
 
 ## Example Usage
@@ -42,7 +43,7 @@ res <- nameMatch(spList=spExample, spSource=databaseExample, author = TRUE, max.
 genusPairs=genusPairs_Plants)
 head(res)
 
-#------------------ The R package also works for other taxomic groups. The below is an exmaple for birds
+#------------------ The R package and its online version also work for other taxomic groups. The below is an exmaple for birds
 # load the formatted ITIS Aves database; the formatted database can be downloaded here:
 # https://github.com/nameMatch/Database
 #--- load the xlsx datafile
@@ -76,7 +77,7 @@ familyMatch(splist = c("Acanthocharax xyz","Agosia xyz","Alticorpus xyz"),taxon=
 
 ## Citing This Package
 
-If you use this package, please cite it.
+If you use this package, please cite them.
 
 Zhang, J. & Qian, H. (2023). U.Taxonstand: An R package for standardizing scientific names of plants and animals. Plant Diversity, 45(1): 1-5. DOI: [10.1016/j.pld.2022.09.001](https://doi.org/10.1016/j.pld.2022.09.001)
 
@@ -90,19 +91,19 @@ Zhang, J., Qian, H., Wang, X. (2025). An online version and some updates of R pa
 
 - Matos, I.S., Vu, B., Mann, J., Dexter, K., Fricker, M. (2025). Leaf venation network evolution across clades and scales. Nature Plants. https://doi.org/10.1038/s41477-025-02011-y
 
-- Wu, Z., Zohner, C. M., Zhou, Y., Crowther, T. W., Wang, H., Wang, Y., ... & Fu, Y. H. (2025). Tree species composition governs urban phenological responses to warming. Nature Communications, 16(1), 3696.
+- Wu, Z., Zohner, C. M., Zhou, Y., Crowther, T. W., Wang, H., Wang, Y., ... & Fu, Y. H. (2025). Tree species composition governs urban phenological responses to warming. Nature Communications, 16(1), 3696. https://doi.org/10.1038/s41467-025-58927-8
 
-- Czyżewski, S., & Svenning, J. C. (2025). Temperate forest plants are associated with heterogeneous semi-open canopy conditions shaped by large herbivores. Nature Plants, 1-16.
+- Czyżewski, S., & Svenning, J. C. (2025). Temperate forest plants are associated with heterogeneous semi-open canopy conditions shaped by large herbivores. Nature Plants, 11, 985–1000. https://doi.org/10.1038/s41477-025-01981-3
 
-- Kopper, C., Schönenberger, J., & Dellinger, A. S. (2025). Mountain colonization precedes shifts away from bee pollination in Melastomataceae. New Phytologist.
+- Kopper, C., Schönenberger, J., & Dellinger, A. S. (2025). Mountain colonization precedes shifts away from bee pollination in Melastomataceae. New Phytologist, 247(3), 1474-1492. https://doi.org/10.1111/nph.70273
 
-- Carta, A., Mattana, E., Ensslin, A., Godefroid, S., & Molina‐Venegas, R. (2025). Plant evolutionary history is largely underrepresented in European seed banks. New Phytologist.
+- Carta, A., Mattana, E., Ensslin, A., Godefroid, S., & Molina-Venegas, R. (2025). Plant evolutionary history is largely underrepresented in European seed banks. New Phytologist, 246(2), 797-806. https://doi.org/10.1111/nph.70000
 
 - Zhang, Z., Wang, F., Wang, X., Sun, M., Zheng, P., Zhao, J., ... & Zhang, J. (2025). Biogeographic affinity partly shapes woody plant diversity along an elevational gradient in subtropical forests. Plant Diversity. https://doi.org/10.1016/j.pld.2025.06.004
 
-- Benedicto‐Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2024). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, 17(1), e12990. https://doi.org/10.1111/conl.12990
+- Benedicto-Royuela, J., Costa, J. M., Heleno, R., Silva, J. S., Freitas, H., Lopes, P., ... & Timóteo, S. (2024). What is the value of biotic seed dispersal in post‐fire forest regeneration? Conservation Letters, 17(1), e12990. https://doi.org/10.1111/conl.12990
 
-- Cruz‐Tejada, D. M., Fernández‐Pascual, E., Mo, A., Mattana, E., & Carta, A. (2024). MedGermDB: A seed germination database for characteristic species of Mediterranean habitats. Applied Vegetation Science, 27(2), e12771. https://doi.org/10.1111/avsc.12771
+- Cruz-Tejada, D. M., Fernández-ascual, E., Mo, A., Mattana, E., & Carta, A. (2024). MedGermDB: A seed germination database for characteristic species of Mediterranean habitats. Applied Vegetation Science, 27(2), e12771. https://doi.org/10.1111/avsc.12771
 
 - Wu, L. M., Chen, S. C., Quan, R. C., & Wang, B. (2024). Disentangling the relative contributions of factors determining seed physical defence: A global‐scale data synthesis. Functional Ecology, 38(5):, 1146-1155. https://doi.org/10.1111/1365-2435.14552
 
