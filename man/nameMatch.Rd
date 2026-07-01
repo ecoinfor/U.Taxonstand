@@ -42,14 +42,14 @@ A data frame with the following columns: \itemize{
    \item{\emph{ID_in_database}}{: Matched ID, extracted from the spSource.}
    \item{\emph{Name_set}}{: Gives a rank based on the column Score. If you select the rows with Name_set = 1, only one of the 'best' matched names for each input taxon includes.}
    \item{\emph{Fuzzy}}{: ‘TRUE’ means the matching result is fully or partially based on fuzzy matching algorithm; ‘FALSE’ means the matching result is not based on fuzzy matching algorithm.}
-   \item{\emph{Score}}{: Matching score (ranging from 1 to 0, when author of a scientific name is provided in user’s species list, or ranging from 0 to 0.8 when author of a scientific name is not provided). A larger value represents a better matching.}
+   \item{\emph{Score}}{: Matching score (ranging from 1 to 0, when author of a scientific name is provided in user’s species list, or ranging from 0 to 0.8 when author of a scientific name is not provided). A larger value represents a better matching. WARNING: Please be aware that you MUST check the matching results manually to avoid some potential errors, especially when the score is quite low.}
    \item{\emph{name.dist}}{: The distance between Submitted_Name and Name_in_database.}
    \item{\emph{author.dist}}{: The distance between Submitted_Author and Author_in_database.}
    \item{\emph{New_name}}{: The accepted name in the spSource.In the case that this column is empty and the column Score has a value > 0, the matched name is treated as an accepted name in the database. In the case that the matched name is treated as a synonym in the database, the name shown in this column is the accepted name of the synonym based on the database. For a name treated as an unresolved name or as a synonym whose accepted name cannot be identified on the database, the text “[Accepted name needs to be determined]” is shown in this column.}
    \item{\emph{New_author}}{: Authority of the name in the column New_name based on the database.}
    \item{\emph{New_ID}}{: ID of the name in the column New_name based on the database.}
    \item{\emph{Family}}{: Family name, extracted from the spSource.}
-   \item{\emph{Name_spLev}}{: If the input taxon name cannot be matched at the same rank level, the species-level matching name shows here.}
+   \item{\emph{Name_spLev}}{: If the input taxon name cannot be matched at the same rank level, the species-level matching name shows here. WARNING: This name might not one accepted name in this database. If you want to use this species-level matching name, you need to use this name to rerun this function.}
    \item{\emph{NOTE}}{: This column contains some notes, e.g. no matching or multiple matching results for a given name, or only matching at species level for a trinomial name.}
 }
 }
